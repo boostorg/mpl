@@ -64,14 +64,14 @@ int main()
     std::vector<int> v;
 
 #if BOOST_WORKAROUND(__BORLANDC__, >= 0x561)
-    mpl::for_each<numbers>(
-          boost::bind(&std::vector<int>::push_back, &v, _1)
-        );    
-#else
     void (std::vector<int>::* push_back)(int const&) = &std::vector<int>::push_back;
     mpl::for_each<numbers>(
           boost::bind(push_back, &v, _1)
         );
+#else
+    mpl::for_each<numbers>(
+          boost::bind(&std::vector<int>::push_back, &v, _1)
+        );    
 #endif
 
     mpl::for_each< numbers >(value_printer(std::cout));
