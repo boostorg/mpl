@@ -63,7 +63,7 @@ int main()
     typedef mpl::range_c<int,0,10> numbers;
     std::vector<int> v;
 
-#if BOOST_WORKAROUND(__BORLANDC__, >= 0x561)
+#if defined(__SGI_STL_PORT)
     void (std::vector<int>::* push_back)(int const&) = &std::vector<int>::push_back;
     mpl::for_each<numbers>(
           boost::bind(push_back, &v, _1)
