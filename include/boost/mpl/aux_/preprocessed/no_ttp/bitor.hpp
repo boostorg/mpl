@@ -17,14 +17,14 @@ template<
     , typename Tag2
     >
 struct bitor_impl
-    : eval_if_c<
+    : if_c<
           ( BOOST_MPL_AUX_NESTED_VALUE_WKND(int, Tag1)
               > BOOST_MPL_AUX_NESTED_VALUE_WKND(int, Tag2)
             )
 
         , aux::cast2nd_impl< bitor_impl< Tag1,Tag1 >,Tag1, Tag2 >
         , aux::cast1st_impl< bitor_impl< Tag2,Tag2 >,Tag1, Tag2 >
-        >
+        >::type
 {
 };
 
