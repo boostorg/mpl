@@ -22,8 +22,9 @@
 // templates; Borland "forgets" them from the very beginning (if the owner 
 // class is a class template).
 #if defined(__MWERKS__) && __MWERKS__ <= 0x3001 \
- || defined(__BORLANDC__) && __BORLANDC__ <= 0x560
+ || defined(__BORLANDC__) && __BORLANDC__ <= 0x570
 #   define BOOST_NO_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES
 #endif
 
 #endif // BOOST_MPL_AUX_CONFIG_DTP_HPP_INCLUDED
+
