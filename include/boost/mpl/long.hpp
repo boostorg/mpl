@@ -3,7 +3,7 @@
 #define BOOST_MPL_LONG_HPP_INCLUDED
 
 // + file: boost/mpl/long.hpp
-// + last modified: 27/jan/03
+// + last modified: 08/mar/03
 
 // Copyright (c) 2000-03
 // Aleksey Gurtovoy
@@ -17,6 +17,8 @@
 // without express or implied warranty.
 //
 // See http://www.boost.org/libs/mpl for documentation.
+
+#include "boost/mpl/long_fwd.hpp"
 
 #define AUX_WRAPPER_VALUE_TYPE long
 #include "boost/mpl/aux_/integral_wrapper.hpp"

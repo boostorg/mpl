@@ -42,7 +42,7 @@ template< typename Category, typename First, typename Last >
 struct distance_impl
     : iter_fold<
           iterator_range<First,Last>
-        , integral_c<unsigned long, 0>
+        , integral_c<long, 0>
         , next<>
         >
 {
@@ -55,6 +55,8 @@ struct distance_impl<ra_iter_tag_,First,Last>
 };
 
 } // namespace aux
+
+BOOST_MPL_AUX_AGLORITHM_NAMESPACE_BEGIN
 
 template<
       typename BOOST_MPL_AUX_VOID_SPEC_PARAM(First)
@@ -70,6 +72,8 @@ struct distance
         >::type type;
 };
 
+BOOST_MPL_AUX_AGLORITHM_NAMESPACE_END
+
 #else
 
 namespace aux {
@@ -81,7 +85,7 @@ struct distance_impl
     template< typename First, typename Last > struct result_
         : iter_fold<
               iterator_range<First,Last>
-            , integral_c<unsigned long, 0>
+            , integral_c<long, 0>
             , next<>
             >
     {
@@ -99,6 +103,8 @@ struct distance_impl<ra_iter_tag_>
 
 } // namespace aux
 
+BOOST_MPL_AUX_AGLORITHM_NAMESPACE_BEGIN
+
 template<
       typename BOOST_MPL_AUX_VOID_SPEC_PARAM(First)
     , typename BOOST_MPL_AUX_VOID_SPEC_PARAM(Last)
@@ -113,9 +119,11 @@ struct distance
 {
 };
 
+BOOST_MPL_AUX_AGLORITHM_NAMESPACE_END
+
 #endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
-BOOST_MPL_AUX_VOID_SPEC(2, distance)
+BOOST_MPL_AUX_ALGORITHM_VOID_SPEC(2, distance)
 
 } // namespace mpl
 } // namespace boost
