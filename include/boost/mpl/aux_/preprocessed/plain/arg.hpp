@@ -15,8 +15,9 @@ template<> struct arg<-1>
     struct apply
     {
         typedef U1 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
@@ -32,8 +33,9 @@ template<> struct arg<1>
     struct apply
     {
         typedef U1 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
@@ -49,8 +51,9 @@ template<> struct arg<2>
     struct apply
     {
         typedef U2 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
@@ -66,8 +69,9 @@ template<> struct arg<3>
     struct apply
     {
         typedef U3 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
@@ -83,8 +87,9 @@ template<> struct arg<4>
     struct apply
     {
         typedef U4 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
@@ -100,8 +105,9 @@ template<> struct arg<5>
     struct apply
     {
         typedef U5 type;
-        BOOST_STATIC_ASSERT(!is_void_<type>::value);
-
+     private:
+        BOOST_STATIC_CONSTANT(bool, nv = !is_void_<type>::value);
+        BOOST_STATIC_ASSERT(nv);
     };
 };
 
