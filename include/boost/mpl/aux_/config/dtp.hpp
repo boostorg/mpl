@@ -39,4 +39,3 @@
 #endif
 
 #endif // BOOST_MPL_AUX_CONFIG_DTP_HPP_INCLUDED
-
