@@ -19,7 +19,7 @@
 
 #include "boost/mpl/aux_/config/dtp.hpp"
 
-#if defined(BOOST_NO_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES)
+#if defined(BOOST_BROKEN_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES)
 
 #   include "boost/config.hpp"
 
@@ -40,6 +40,6 @@ struct arity
 } // namespace mpl
 } // namespace boost
 
-#endif // BOOST_NO_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES
+#endif // BOOST_BROKEN_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES
 
 #endif // BOOST_MPL_AUX_ARITY_HPP_INCLUDED

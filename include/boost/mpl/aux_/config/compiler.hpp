@@ -21,21 +21,33 @@
 #include "boost/config.hpp"
 
 #if defined(BOOST_MSVC) && BOOST_MSVC < 1300
-#   define BOOST_MPL_COMPILER_CLASS msvc60
-#elif defined(BOOST_MSVC) && BOOST_MSVC == 1300
-#   define BOOST_MPL_COMPILER_CLASS msvc70
-#elif defined(__GNUC__)
-#   define BOOST_MPL_COMPILER_CLASS gcc
-#elif defined(__BORLANDC__)
-#   define BOOST_MPL_COMPILER_CLASS bcc
-#elif defined(__MWERKS__) && __MWERKS__ <= 0x3001
-#   define BOOST_MPL_COMPILER_CLASS mwcw
-#elif defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
-#   define BOOST_MPL_COMPILER_CLASS no_ctps
-#else
-#   define BOOST_MPL_COMPILER_CLASS plain
-#endif
+#   define BOOST_MPL_COMPILER_DIR msvc60
 
-#define BOOST_MPL_COMPILER_DIR BOOST_MPL_COMPILER_CLASS/
+#elif defined(BOOST_MSVC) && BOOST_MSVC == 1300
+#   define BOOST_MPL_COMPILER_DIR msvc70
+
+#elif defined(__GNUC__)
+#   define BOOST_MPL_COMPILER_DIR gcc
+
+#elif defined(__BORLANDC__) 
+#   if !defined(BOOST_NO_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES)
+#       define BOOST_MPL_COMPILER_DIR bcc551
+#   else
+#       define BOOST_MPL_COMPILER_DIR bcc
+#   endif
+
+#elif defined(__MWERKS__) 
+#   if defined(BOOST_BROKEN_DEFAULT_TEMPLATE_PARAMETERS_IN_NESTED_TEMPLATES)
+#       define BOOST_MPL_COMPILER_DIR mwcw
+#   else
+#       define BOOST_MPL_COMPILER_DIR plain
+#   endif
+
+#elif defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
+#   define BOOST_MPL_COMPILER_DIR no_ctps
+
+#else
+#   define BOOST_MPL_COMPILER_DIR plain
+#endif
 
 #endif // BOOST_MPL_AUX_CONFIG_COMPILER_HPP_INCLUDED
