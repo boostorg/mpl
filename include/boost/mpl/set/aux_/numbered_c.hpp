@@ -15,7 +15,8 @@
 // $Date$
 // $Revision$
 
-#include <boost/preprocessor/enum_params.hpp>
+#include <boost/preprocessor/repetition/enum_params.hpp>
+#include <boost/preprocessor/repetition/enum_trailing_params.hpp>
 #include <boost/preprocessor/dec.hpp>
 #include <boost/preprocessor/cat.hpp>
 
@@ -23,7 +24,7 @@
 
 #   define AUX778076_SET_C_TAIL(set, i_, T, C) \
     BOOST_PP_CAT(BOOST_PP_CAT(set,i_),_c)< \
-          T, BOOST_PP_ENUM_PARAMS(i_, C) \
+          T BOOST_PP_ENUM_TRAILING_PARAMS(i_, C) \
         > \
     /**/
 
@@ -33,7 +34,7 @@ template<
     >
 struct BOOST_PP_CAT(BOOST_PP_CAT(set,i_),_c)
     : s_item<
-          integal_c<T,BOOST_PP_CAT(C,BOOST_PP_DEC(i_))>
+          integral_c<T,BOOST_PP_CAT(C,BOOST_PP_DEC(i_))>
         , AUX778076_SET_C_TAIL(set,BOOST_PP_DEC(i_), T, C)
         >
 {

@@ -24,17 +24,17 @@
 #   include <boost/preprocessor/stringize.hpp>
 
 #if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
-#   define AUX778076_HEADER \
+#   define AUX778076_LIST_C_HEADER \
     BOOST_PP_CAT(BOOST_PP_CAT(list,BOOST_MPL_LIMIT_LIST_SIZE),_c).hpp \
     /**/
 #else
-#   define AUX778076_HEADER \
+#   define AUX778076_LIST_C_HEADER \
     BOOST_PP_CAT(BOOST_PP_CAT(list,BOOST_MPL_LIMIT_LIST_SIZE),_c)##.hpp \
     /**/
 #endif
 
-#   include BOOST_PP_STRINGIZE(boost/mpl/list/AUX778076_HEADER)
-#   undef AUX778076_HEADER
+#   include BOOST_PP_STRINGIZE(boost/mpl/list/AUX778076_LIST_C_HEADER)
+#   undef AUX778076_LIST_C_HEADER
 #   include <climits>
 #endif
 

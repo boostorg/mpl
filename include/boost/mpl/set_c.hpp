@@ -24,17 +24,17 @@
 #   include <boost/preprocessor/stringize.hpp>
 
 #if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
-#   define AUX778076_HEADER \
-    BOOST_PP_CAT(BOOST_PP_CAT(set,BOOST_MPL_LIMIT_VECTOR_SIZE),_c).hpp \
+#   define AUX778076_SET_C_HEADER \
+    BOOST_PP_CAT(BOOST_PP_CAT(set,BOOST_MPL_LIMIT_SET_SIZE),_c).hpp \
     /**/
 #else
-#   define AUX778076_HEADER \
-    BOOST_PP_CAT(BOOST_PP_CAT(set,BOOST_MPL_LIMIT_VECTOR_SIZE),_c)##.hpp \
+#   define AUX778076_SET_C_HEADER \
+    BOOST_PP_CAT(BOOST_PP_CAT(set,BOOST_MPL_LIMIT_SET_SIZE),_c)##.hpp \
     /**/
 #endif
 
-#   include BOOST_PP_STRINGIZE(boost/mpl/set/AUX778076_HEADER)
-#   undef AUX778076_HEADER
+#   include BOOST_PP_STRINGIZE(boost/mpl/set/AUX778076_SET_C_HEADER)
+#   undef AUX778076_SET_C_HEADER
 #   include <climits>
 #endif
 
@@ -51,7 +51,7 @@
 #   include <boost/mpl/limits/set.hpp>
 
 #   define AUX778076_SEQUENCE_NAME set_c
-#   define AUX778076_SEQUENCE_LIMIT BOOST_MPL_LIMIT_VECTOR_SIZE
+#   define AUX778076_SEQUENCE_LIMIT BOOST_MPL_LIMIT_SET_SIZE
 #   define AUX778076_SEQUENCE_NAME_N(n) BOOST_PP_CAT(BOOST_PP_CAT(set,n),_c)
 #   define AUX778076_SEQUENCE_INTEGRAL_WRAPPER
 #   include <boost/mpl/aux_/sequence_wrapper.hpp>

@@ -16,6 +16,7 @@
 // $Revision$
 
 #include <boost/mpl/set/set0.hpp>
+#include <boost/mpl/integral_c.hpp>
 
 namespace boost { namespace mpl {
 
@@ -23,6 +24,7 @@ template< typename T > struct set0_c
     : set0<>
 {
     typedef set0_c type;
+    typedef T value_type;
 };
 
 }}

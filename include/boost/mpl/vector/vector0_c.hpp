@@ -15,6 +15,7 @@
 // $Revision$
 
 #include <boost/mpl/vector/vector0.hpp>
+#include <boost/mpl/integral_c.hpp>
 
 namespace boost { namespace mpl {
 
@@ -22,6 +23,7 @@ template< typename T > struct vector0_c
     : vector0<>
 {
     typedef vector0_c type;
+    typedef T value_type;
 };
 
 }}

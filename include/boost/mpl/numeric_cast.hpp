@@ -14,8 +14,6 @@
 // $Date$
 // $Revision$
 
-#include <boost/mpl/apply_wrap.hpp>
-#include <boost/mpl/aux_/config/forwarding.hpp>
 #include <boost/mpl/aux_/config/msvc.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
 
@@ -37,63 +35,6 @@ template< typename SourceTag, typename TargetTag > struct BOOST_MPL_AUX_NUMERIC_
 {
     template< typename N > struct apply;
 };
-
-
-namespace aux {
-
-template<
-      typename F
-    , typename Tag1
-    , typename Tag2
-    >
-struct cast1st_impl
-{
-    template< typename N1, typename N2 > struct apply
-#if !defined(BOOST_MPL_CFG_NO_NESTED_FORWARDING)
-        : apply_wrap2< 
-              F
-            , typename apply_wrap1< BOOST_MPL_AUX_NUMERIC_CAST<Tag1,Tag2>,N1 >::type
-            , N2
-            >
-    {
-#else
-    {
-    typedef typename apply_wrap2< 
-              F
-            , typename apply_wrap1< BOOST_MPL_AUX_NUMERIC_CAST<Tag1,Tag2>,N1 >::type
-            , N2
-            >::type type;
-#endif
-    };
-};
-
-template<
-      typename F
-    , typename Tag1
-    , typename Tag2
-    >
-struct cast2nd_impl
-{
-    template< typename N1, typename N2 > struct apply
-#if !defined(BOOST_MPL_CFG_NO_NESTED_FORWARDING)
-        : apply_wrap2< 
-              F
-            , N1
-            , typename apply_wrap1< BOOST_MPL_AUX_NUMERIC_CAST<Tag2,Tag1>,N2 >::type
-            >
-    {
-#else
-    {
-        typedef typename apply_wrap2< 
-              F
-            , N1
-            , typename apply_wrap1< BOOST_MPL_AUX_NUMERIC_CAST<Tag2,Tag1>,N2 >::type
-            >::type type;
-#endif
-    };
-};
-
-} // namespace aux
 
 }}
 

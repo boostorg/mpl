@@ -22,6 +22,7 @@
 #   include <boost/mpl/apply_wrap.hpp>
 #   include <boost/mpl/if.hpp>
 #   include <boost/mpl/tag.hpp>
+#   include <boost/mpl/aux_/numeric_cast_utils.hpp>
 #   include <boost/mpl/aux_/na.hpp>
 #   include <boost/mpl/aux_/na_spec.hpp>
 #   include <boost/mpl/aux_/lambda_support.hpp>
