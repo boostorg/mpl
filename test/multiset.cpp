@@ -12,7 +12,7 @@
 // $Revision$
 
 #include <boost/mpl/multiset/multiset0.hpp>
-#include <boost/mpl/multiset/multiset10.hpp>
+//#include <boost/mpl/multiset/multiset10.hpp>
 
 #include <boost/mpl/insert.hpp>
 #include <boost/mpl/count.hpp>
@@ -22,7 +22,9 @@
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/find.hpp>
 
+#include <boost/config.hpp>
 
+/*
 struct test_data1
 {
     typedef multiset0<>                         s0;
@@ -40,17 +42,17 @@ struct test_data2
     typedef multiset<int,char&,int>             s3;
     typedef multiset<int,char&,int,abstract>    s4;
 };
+*/
 
 template< typename S0 >
-struct test_data3
+struct test_data
 {
-    typedef S0                          s0;
-    typedef insert<s0,int>::type        s1;
-    typedef insert<s1,char&>::type      s2;
-    typedef insert<s2,int>::type        s3;
-    typedef insert<s3,abstract>::type   s4;
+    typedef S0                                  s0;
+    typedef typename insert<s0,int>::type       s1;
+    typedef typename insert<s1,char&>::type     s2;
+    typedef typename insert<s2,int>::type       s3;
+    typedef typename insert<s3,abstract>::type  s4;
 };
-
 
 
 template< typename T >
@@ -65,15 +67,13 @@ void count_test()
     MPL_ASSERT_RELATION( ( count<BOOST_DEDUCED_TYPENAME T::s4,abstract>::value ), ==, 1 );
 }
 
-
 MPL_TEST_CASE()
 {
-    count_test<test_data1>();
-    count_test<test_data2>();
-    count_test< test_data3< multiset<> > >();
-    count_test< test_data3< multiset0<> > >();
+    //count_test<test_data1>();
+    //count_test<test_data2>();
+    //count_test< test_data< multiset<> > >();
+    count_test< test_data< multiset0<> > >();
 }
-
 
 /*
 // Use a template for testing so that GCC will show us the actual types involved
@@ -88,19 +88,20 @@ void find_test()
     BOOST_MPL_ASSERT_NOT(( is_same<BOOST_DEDUCED_TYPENAME find<S,char>::type,not_found> ));
     BOOST_MPL_ASSERT(( is_same<BOOST_DEDUCED_TYPENAME find<S,char*>::type,not_found> ));
 }
+*/
 
 MPL_TEST_CASE()
 {
-    typedef insert<multiset0<>, int> set_of_1_int;
-    typedef begin<set_of_1_int>::type iter_to_1_int;
-    //BOOST_MPL_ASSERT(( is_same< deref<iter_to_1_int>::type, int > ));
+    // agurt 11/jun/06: multiset does not implement iterators yet!    
+    // typedef insert<multiset0<>, int>::type set_of_1_int;
+    // typedef begin<set_of_1_int>::type iter_to_1_int;
+    // BOOST_MPL_ASSERT(( is_same< deref<iter_to_1_int>::type, int > ));
     
     typedef multiset0<> s0;
     typedef insert<s0,int>::type s1;
     typedef insert<s1,long>::type s2;
     typedef insert<s2,char>::type myset;
     
-    find_test<myset>();
-    //find_test<myset::type>();
+    // find_test<myset>();
+    // find_test<myset::type>();
 }
-*/
