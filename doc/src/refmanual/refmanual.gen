@@ -1,0 +1,1418 @@
+
+The MPL Reference Manual
+************************
+
+:Copyright: Copyright ©  Aleksey Gurtovoy and David Abrahams, 2001-2005.
+
+:License:   Distributed under the Boost Software License, Version 1.0. (See 
+            accompanying file ``LICENSE_1_0.txt`` or copy at 
+            `http://www.boost.org/LICENSE_1_0.txt`__)
+
+
+__ http://www.boost.org/LICENSE_1_0.txt
+
+
+
+.. no .. section-numbering::
+
+
+.. raw:: latex
+
+   \setcounter{secnumdepth}{2}
+   \setcounter{tocdepth}{2}
+    
+.. contents:: Table of Contents
+    :depth: 3
+
+.. |Boost.Bind| replace:: `Boost.Bind`__
+__ http://www.boost.org/libs/bind/bind.html
+
+.. |Boost.Lambda| replace:: `Boost.Lambda`__
+__ http://www.boost.org/libs/lambda/doc/index.html
+
+.. role:: refentry(literal)
+
+.. |t1| replace:: \ *t*\ :sub:`1`
+.. |t2| replace:: \ *t*\ :sub:`2`
+.. |tn| replace:: \ *t*\ :sub:`n`
+.. workaround weird substitution bug (used to work!):
+.. |t1...tn| replace:: \ *t*\ :sub:`1`,\ *t*\ :sub:`2`,... |tn|
+
+.. |p1...pn| replace:: \ *p*\ :sub:`1`,\ *p*\ :sub:`2`,... \ *p*\ :sub:`n`
+
+
+.. |c1| replace:: \ *c*\ :sub:`1`
+.. |c2| replace:: \ *c*\ :sub:`2`
+.. |cn| replace:: \ *c*\ :sub:`n`
+.. workaround weird substitution bug (works with t's!):
+.. |c1...cn| replace:: \ *c*\ :sub:`1`,\ *c*\ :sub:`2`,... \ *c*\ :sub:`n`
+
+.. |x1...xn| replace:: *x*\ :sub:`1`,\ *x*\ :sub:`2`,... \ *x*\ :sub:`n`
+
+.. |...| replace:: *...*
+.. |T1...Tn| replace:: ``T1``, ``T2``,... ``Tn``
+
+.. |F1...Fn| replace:: ``F1``, ``F2``,... ``Fn``
+.. |f1...fn| replace:: ``f1``, ``f2``,... ``fn``
+
+.. |A1...An| replace:: ``A1``,... ``An``
+.. |a1...an| replace:: ``a1``,... ``an``
+
+
+
+.. |begin/end<Sequence>| replace:: [``begin<Sequence>::type``, ``end<Sequence>::type``)
+.. |begin/end<Seq>| replace:: [``begin<Seq>::type``, ``end<Seq>::type``)
+.. |begin/end<Seq1>| replace:: [``begin<Seq1>::type``, ``end<Seq1>::type``)
+.. |begin/end<Seq2>| replace:: [``begin<Seq2>::type``, ``end<Seq2>::type``)
+
+.. |begin/end<s>| replace:: [``begin<s>::type``, ``end<s>::type``)
+.. |begin/end<v>| replace:: [``begin<v>::type``, ``end<v>::type``)
+.. |begin/end<s1>| replace:: [``begin<s1>::type``, ``end<s1>::type``)
+.. |begin/end<s2>| replace:: [``begin<s2>::type``, ``end<s2>::type``)
+
+.. |is_same| replace:: is_same
+.. |unspecified| replace:: *unspecified*
+.. |unspecified-token-seq| replace:: *unspecified token sequence*
+
+.. |idic| replace:: *implementation-defined integral constant*
+
+.. |true if and only if| replace:: A boolean `Integral Constant`_ ``c`` such that
+   ``c::value == true`` if and only if 
+
+
+.. |O(1)| replace:: *O(1)*
+
+.. |_1| replace:: |``_1``|__
+.. |_2| replace:: |``_2``|__
+.. |_3| replace:: |``_3``|__
+.. |_4| replace:: |``_4``|__
+.. |_5| replace:: |``_5``|__
+.. |``_1``| replace:: :refentry:`_1`
+.. |``_2``| replace:: :refentry:`_2`
+.. |``_3``| replace:: :refentry:`_3`
+.. |``_4``| replace:: :refentry:`_4`
+.. |``_5``| replace:: :refentry:`_5`
+__ `Placeholders`_
+__ `Placeholders`_
+__ `Placeholders`_
+__ `Placeholders`_
+__ `Placeholders`_
+
+.. |placeholder| replace:: `placeholder`__
+__ `Placeholders`_
+
+.. |_1,_2,..._n| replace:: |_1|, |_2|, |_3|,\ |...|
+
+
+.. |--| unicode:: U+02014 .. EM DASH
+
+
+.. |Note:| replace:: [*Note:*
+.. |-- end note| replace:: |--| *end note*\]
+
+
+.. |Semantics disclaimer...| replace:: The semantics of an expression are defined only 
+   where they differ from, or are not defined in
+
+
+.. |numeric metafunction note| replace:: The requirements listed in this specification 
+   are the ones imposed by the default implementation. See |Numeric Metafunction| concept 
+   for the details on how to provide an implementation for a user-defined numeric type 
+   that does not satisfy the `Integral Constant`_ requirements.
+   
+
+.. "[*Note:*" instead of "|Note:|" to workaround another subst. bug
+
+
+.. |preprocessed headers disclaimer| replace:: [*Note:* Overriding will take effect 
+   *only* if the library is configured not to use `preprocessed headers`__. See 
+   |+BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS+|__ for more information. |--| *end note*\]
+
+.. |+BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS+| replace:: :refentry:`BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS`
+__ `BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS`_
+__ `BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS`_
+
+.. |BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS| replace:: |``BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS``|__
+.. |``BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS``| replace:: :refentry:`BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS`
+__ `BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS`_
+
+
+.. |transformation algorithm disclaimer| replace:: 
+   [*Note:* This wording applies to a no-inserter version(s) of the algorithm. See the 
+   `Expression semantics` subsection for a precise specification of the algorithm's 
+   details in all cases |--| *end note*\]
+
+.. |In the following table...| replace:: In the following table and subsequent specifications, 
+
+Sequences
++++++++++
+.. _`label-Sequences`:
+
+.. include:: Sequences.rst
+.. |Sequences| replace:: `Sequences`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Concepts
+////////
+.. _`label-Sequences-Concepts`:
+
+.. include:: Sequences-Concepts.rst
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: ForwardSequence.rst
+.. |Forward Sequence| replace:: `Forward Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: BidirectionalSequence.rst
+.. |Bidirectional Sequence| replace:: `Bidirectional Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: RandomAccessSequence.rst
+.. |Random Access Sequence| replace:: `Random Access Sequence`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: ExtensibleSequence.rst
+.. |Extensible Sequence| replace:: `Extensible Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: FrontExtensibleSequence.rst
+.. |Front Extensible Sequence| replace:: `Front Extensible Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: BackExtensibleSequence.rst
+.. |Back Extensible Sequence| replace:: `Back Extensible Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: AssociativeSequence.rst
+.. |Associative Sequence| replace:: `Associative Sequence`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ExtensibleAssociativeSeq.rst
+.. |Extensible Associative Seq| replace:: `Extensible Associative Seq`_
+.. modtime: July 28, 2005 11:04:37 +0000
+
+.. include:: IntegralSequenceWrapper.rst
+.. |Integral Sequence Wrapper| replace:: `Integral Sequence Wrapper`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: VariadicSequence.rst
+.. |Variadic Sequence| replace:: `Variadic Sequence`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Classes
+///////
+.. _`label-Sequences-Classes`:
+
+.. include:: Sequences-Classes.rst
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: vector.rst
+.. |vector| replace:: |``vector``|__
+.. |``vector``| replace:: :refentry:`vector`
+__ `vector`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: list.rst
+.. |list| replace:: |``list``|__
+.. |``list``| replace:: :refentry:`list`
+__ `list`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: deque.rst
+.. |deque| replace:: |``deque``|__
+.. |``deque``| replace:: :refentry:`deque`
+__ `deque`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: set.rst
+.. |set| replace:: |``set``|__
+.. |``set``| replace:: :refentry:`set`
+__ `set`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: map.rst
+.. |map| replace:: |``map``|__
+.. |``map``| replace:: :refentry:`map`
+__ `map`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: range_c.rst
+.. |range_c| replace:: |``range_c``|__
+.. |``range_c``| replace:: :refentry:`range_c`
+__ `range_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: vector_c.rst
+.. |vector_c| replace:: |``vector_c``|__
+.. |``vector_c``| replace:: :refentry:`vector_c`
+__ `vector_c`_
+.. modtime: March 02, 2005 05:14:26 +0000
+
+.. include:: list_c.rst
+.. |list_c| replace:: |``list_c``|__
+.. |``list_c``| replace:: :refentry:`list_c`
+__ `list_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: set_c.rst
+.. |set_c| replace:: |``set_c``|__
+.. |``set_c``| replace:: :refentry:`set_c`
+__ `set_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Views
+/////
+.. _`label-Sequences-Views`:
+
+.. include:: Sequences-Views.rst
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: empty_sequence.rst
+.. |empty_sequence| replace:: |``empty_sequence``|__
+.. |``empty_sequence``| replace:: :refentry:`empty_sequence`
+__ `empty_sequence`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: filter_view.rst
+.. |filter_view| replace:: |``filter_view``|__
+.. |``filter_view``| replace:: :refentry:`filter_view`
+__ `filter_view`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: iterator_range.rst
+.. |iterator_range| replace:: |``iterator_range``|__
+.. |``iterator_range``| replace:: :refentry:`iterator_range`
+__ `iterator_range`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: joint_view.rst
+.. |joint_view| replace:: |``joint_view``|__
+.. |``joint_view``| replace:: :refentry:`joint_view`
+__ `joint_view`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: single_view.rst
+.. |single_view| replace:: |``single_view``|__
+.. |``single_view``| replace:: :refentry:`single_view`
+__ `single_view`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: transform_view.rst
+.. |transform_view| replace:: |``transform_view``|__
+.. |``transform_view``| replace:: :refentry:`transform_view`
+__ `transform_view`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: zip_view.rst
+.. |zip_view| replace:: |``zip_view``|__
+.. |``zip_view``| replace:: :refentry:`zip_view`
+__ `zip_view`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Intrinsic Metafunctions
+///////////////////////
+.. _`label-Sequences-Intrinsic Metafunctions`:
+
+.. include:: Sequences-Intrinsic.rst
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: at.rst
+.. |at| replace:: |``at``|__
+.. |``at``| replace:: :refentry:`at`
+__ `at`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: at_c.rst
+.. |at_c| replace:: |``at_c``|__
+.. |``at_c``| replace:: :refentry:`at_c`
+__ `at_c`_
+.. modtime: January 28, 2005 06:53:14 +0000
+
+.. include:: back.rst
+.. |back| replace:: |``back``|__
+.. |``back``| replace:: :refentry:`back`
+__ `back`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: begin.rst
+.. |begin| replace:: |``begin``|__
+.. |``begin``| replace:: :refentry:`begin`
+__ `begin`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: clear.rst
+.. |clear| replace:: |``clear``|__
+.. |``clear``| replace:: :refentry:`clear`
+__ `clear`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: empty.rst
+.. |empty| replace:: |``empty``|__
+.. |``empty``| replace:: :refentry:`empty`
+__ `empty`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: end.rst
+.. |end| replace:: |``end``|__
+.. |``end``| replace:: :refentry:`end`
+__ `end`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: erase.rst
+.. |erase| replace:: |``erase``|__
+.. |``erase``| replace:: :refentry:`erase`
+__ `erase`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: erase_key.rst
+.. |erase_key| replace:: |``erase_key``|__
+.. |``erase_key``| replace:: :refentry:`erase_key`
+__ `erase_key`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: front.rst
+.. |front| replace:: |``front``|__
+.. |``front``| replace:: :refentry:`front`
+__ `front`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: has_key.rst
+.. |has_key| replace:: |``has_key``|__
+.. |``has_key``| replace:: :refentry:`has_key`
+__ `has_key`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: insert.rst
+.. |insert| replace:: |``insert``|__
+.. |``insert``| replace:: :refentry:`insert`
+__ `insert`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: insert_range.rst
+.. |insert_range| replace:: |``insert_range``|__
+.. |``insert_range``| replace:: :refentry:`insert_range`
+__ `insert_range`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: is_sequence.rst
+.. |is_sequence| replace:: |``is_sequence``|__
+.. |``is_sequence``| replace:: :refentry:`is_sequence`
+__ `is_sequence`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: key_type.rst
+.. |key_type| replace:: |``key_type``|__
+.. |``key_type``| replace:: :refentry:`key_type`
+__ `key_type`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: order.rst
+.. |order| replace:: |``order``|__
+.. |``order``| replace:: :refentry:`order`
+__ `order`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: pop_back.rst
+.. |pop_back| replace:: |``pop_back``|__
+.. |``pop_back``| replace:: :refentry:`pop_back`
+__ `pop_back`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: pop_front.rst
+.. |pop_front| replace:: |``pop_front``|__
+.. |``pop_front``| replace:: :refentry:`pop_front`
+__ `pop_front`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: push_back.rst
+.. |push_back| replace:: |``push_back``|__
+.. |``push_back``| replace:: :refentry:`push_back`
+__ `push_back`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: push_front.rst
+.. |push_front| replace:: |``push_front``|__
+.. |``push_front``| replace:: :refentry:`push_front`
+__ `push_front`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: sequence_tag.rst
+.. |sequence_tag| replace:: |``sequence_tag``|__
+.. |``sequence_tag``| replace:: :refentry:`sequence_tag`
+__ `sequence_tag`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: size.rst
+.. |size| replace:: |``size``|__
+.. |``size``| replace:: :refentry:`size`
+__ `size`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: value_type.rst
+.. |value_type| replace:: |``value_type``|__
+.. |``value_type``| replace:: :refentry:`value_type`
+__ `value_type`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Iterators
++++++++++
+.. _`label-Iterators`:
+
+.. include:: Iterators.rst
+.. |Iterators| replace:: `Iterators`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Concepts
+////////
+.. _`label-Iterators-Concepts`:
+
+.. include:: Iterators-Concepts.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ForwardIterator.rst
+.. |Forward Iterator| replace:: `Forward Iterator`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: BidirectionalIterator.rst
+.. |Bidirectional Iterator| replace:: `Bidirectional Iterator`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: RandomAccessIterator.rst
+.. |Random Access Iterator| replace:: `Random Access Iterator`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Iterator Metafunctions
+//////////////////////
+.. _`label-Iterators-Iterator Metafunctions`:
+
+.. include:: advance.rst
+.. |advance| replace:: |``advance``|__
+.. |``advance``| replace:: :refentry:`advance`
+__ `advance`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: distance.rst
+.. |distance| replace:: |``distance``|__
+.. |``distance``| replace:: :refentry:`distance`
+__ `distance`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: next.rst
+.. |next| replace:: |``next``|__
+.. |``next``| replace:: :refentry:`next`
+__ `next`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: prior.rst
+.. |prior| replace:: |``prior``|__
+.. |``prior``| replace:: :refentry:`prior`
+__ `prior`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: deref.rst
+.. |deref| replace:: |``deref``|__
+.. |``deref``| replace:: :refentry:`deref`
+__ `deref`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: iterator_category.rst
+.. |iterator_category| replace:: |``iterator_category``|__
+.. |``iterator_category``| replace:: :refentry:`iterator_category`
+__ `iterator_category`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Algorithms
+++++++++++
+.. _`label-Algorithms`:
+
+.. include:: Algorithms.rst
+.. |Algorithms| replace:: `Algorithms`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Concepts
+////////
+.. _`label-Algorithms-Concepts`:
+
+.. include:: Inserter.rst
+.. |Inserter| replace:: `Inserter`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ReversibleAlgorithm.rst
+.. |Reversible Algorithm| replace:: `Reversible Algorithm`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Inserters
+/////////
+.. _`label-Algorithms-Inserters`:
+
+.. include:: back_inserter.rst
+.. |back_inserter| replace:: |``back_inserter``|__
+.. |``back_inserter``| replace:: :refentry:`back_inserter`
+__ `back_inserter`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: front_inserter.rst
+.. |front_inserter| replace:: |``front_inserter``|__
+.. |``front_inserter``| replace:: :refentry:`front_inserter`
+__ `front_inserter`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: inserter_.rst
+.. |inserter_| replace:: |``inserter_``|__
+.. |``inserter_``| replace:: :refentry:`inserter_`
+__ `inserter_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Iteration Algorithms
+////////////////////
+.. _`label-Algorithms-Iteration Algorithms`:
+
+.. include:: Algorithms-Iteration.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: fold.rst
+.. |fold| replace:: |``fold``|__
+.. |``fold``| replace:: :refentry:`fold`
+__ `fold`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: iter_fold.rst
+.. |iter_fold| replace:: |``iter_fold``|__
+.. |``iter_fold``| replace:: :refentry:`iter_fold`
+__ `iter_fold`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_fold.rst
+.. |reverse_fold| replace:: |``reverse_fold``|__
+.. |``reverse_fold``| replace:: :refentry:`reverse_fold`
+__ `reverse_fold`_
+.. modtime: January 25, 2005 21:47:19 +0000
+
+.. include:: reverse_iter_fold.rst
+.. |reverse_iter_fold| replace:: |``reverse_iter_fold``|__
+.. |``reverse_iter_fold``| replace:: :refentry:`reverse_iter_fold`
+__ `reverse_iter_fold`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: accumulate.rst
+.. |accumulate| replace:: |``accumulate``|__
+.. |``accumulate``| replace:: :refentry:`accumulate`
+__ `accumulate`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Querying Algorithms
+///////////////////
+.. _`label-Algorithms-Querying Algorithms`:
+
+.. include:: Algorithms-Querying.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: find.rst
+.. |find| replace:: |``find``|__
+.. |``find``| replace:: :refentry:`find`
+__ `find`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: find_if.rst
+.. |find_if| replace:: |``find_if``|__
+.. |``find_if``| replace:: :refentry:`find_if`
+__ `find_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: contains.rst
+.. |contains| replace:: |``contains``|__
+.. |``contains``| replace:: :refentry:`contains`
+__ `contains`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: count.rst
+.. |count| replace:: |``count``|__
+.. |``count``| replace:: :refentry:`count`
+__ `count`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: count_if.rst
+.. |count_if| replace:: |``count_if``|__
+.. |``count_if``| replace:: :refentry:`count_if`
+__ `count_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: lower_bound.rst
+.. |lower_bound| replace:: |``lower_bound``|__
+.. |``lower_bound``| replace:: :refentry:`lower_bound`
+__ `lower_bound`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: upper_bound.rst
+.. |upper_bound| replace:: |``upper_bound``|__
+.. |``upper_bound``| replace:: :refentry:`upper_bound`
+__ `upper_bound`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: min_element.rst
+.. |min_element| replace:: |``min_element``|__
+.. |``min_element``| replace:: :refentry:`min_element`
+__ `min_element`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: max_element.rst
+.. |max_element| replace:: |``max_element``|__
+.. |``max_element``| replace:: :refentry:`max_element`
+__ `max_element`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: equal.rst
+.. |equal| replace:: |``equal``|__
+.. |``equal``| replace:: :refentry:`equal`
+__ `equal`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Transformation Algorithms
+/////////////////////////
+.. _`label-Algorithms-Transformation Algorithms`:
+
+.. include:: Algorithms-Transformation.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: copy.rst
+.. |copy| replace:: |``copy``|__
+.. |``copy``| replace:: :refentry:`copy`
+__ `copy`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: copy_if.rst
+.. |copy_if| replace:: |``copy_if``|__
+.. |``copy_if``| replace:: :refentry:`copy_if`
+__ `copy_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: transform.rst
+.. |transform| replace:: |``transform``|__
+.. |``transform``| replace:: :refentry:`transform`
+__ `transform`_
+.. modtime: August 28, 2006 06:04:52 +0000
+
+.. include:: replace.rst
+.. |replace| replace:: |``replace``|__
+.. |``replace``| replace:: :refentry:`replace`
+__ `replace`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: replace_if.rst
+.. |replace_if| replace:: |``replace_if``|__
+.. |``replace_if``| replace:: :refentry:`replace_if`
+__ `replace_if`_
+.. modtime: February 19, 2006 06:52:17 +0000
+
+.. include:: remove.rst
+.. |remove| replace:: |``remove``|__
+.. |``remove``| replace:: :refentry:`remove`
+__ `remove`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: remove_if.rst
+.. |remove_if| replace:: |``remove_if``|__
+.. |``remove_if``| replace:: :refentry:`remove_if`
+__ `remove_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: unique.rst
+.. |unique| replace:: |``unique``|__
+.. |``unique``| replace:: :refentry:`unique`
+__ `unique`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: partition.rst
+.. |partition| replace:: |``partition``|__
+.. |``partition``| replace:: :refentry:`partition`
+__ `partition`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: stable_partition.rst
+.. |stable_partition| replace:: |``stable_partition``|__
+.. |``stable_partition``| replace:: :refentry:`stable_partition`
+__ `stable_partition`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: sort.rst
+.. |sort| replace:: |``sort``|__
+.. |``sort``| replace:: :refentry:`sort`
+__ `sort`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse.rst
+.. |reverse| replace:: |``reverse``|__
+.. |``reverse``| replace:: :refentry:`reverse`
+__ `reverse`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_copy.rst
+.. |reverse_copy| replace:: |``reverse_copy``|__
+.. |``reverse_copy``| replace:: :refentry:`reverse_copy`
+__ `reverse_copy`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_copy_if.rst
+.. |reverse_copy_if| replace:: |``reverse_copy_if``|__
+.. |``reverse_copy_if``| replace:: :refentry:`reverse_copy_if`
+__ `reverse_copy_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_transform.rst
+.. |reverse_transform| replace:: |``reverse_transform``|__
+.. |``reverse_transform``| replace:: :refentry:`reverse_transform`
+__ `reverse_transform`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_replace.rst
+.. |reverse_replace| replace:: |``reverse_replace``|__
+.. |``reverse_replace``| replace:: :refentry:`reverse_replace`
+__ `reverse_replace`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_replace_if.rst
+.. |reverse_replace_if| replace:: |``reverse_replace_if``|__
+.. |``reverse_replace_if``| replace:: :refentry:`reverse_replace_if`
+__ `reverse_replace_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_remove.rst
+.. |reverse_remove| replace:: |``reverse_remove``|__
+.. |``reverse_remove``| replace:: :refentry:`reverse_remove`
+__ `reverse_remove`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_remove_if.rst
+.. |reverse_remove_if| replace:: |``reverse_remove_if``|__
+.. |``reverse_remove_if``| replace:: :refentry:`reverse_remove_if`
+__ `reverse_remove_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_unique.rst
+.. |reverse_unique| replace:: |``reverse_unique``|__
+.. |``reverse_unique``| replace:: :refentry:`reverse_unique`
+__ `reverse_unique`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_partition.rst
+.. |reverse_partition| replace:: |``reverse_partition``|__
+.. |``reverse_partition``| replace:: :refentry:`reverse_partition`
+__ `reverse_partition`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: reverse_stable_partition.rst
+.. |reverse_stable_partition| replace:: |``reverse_stable_partition``|__
+.. |``reverse_stable_partition``| replace:: :refentry:`reverse_stable_partition`
+__ `reverse_stable_partition`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Runtime Algorithms
+//////////////////
+.. _`label-Algorithms-Runtime Algorithms`:
+
+.. include:: Algorithms-Runtime.rst
+.. modtime: August 28, 2006 04:54:46 +0000
+
+.. include:: for_each.rst
+.. |for_each| replace:: |``for_each``|__
+.. |``for_each``| replace:: :refentry:`for_each`
+__ `for_each`_
+.. modtime: August 28, 2006 07:06:38 +0000
+
+
+Metafunctions
++++++++++++++
+.. _`label-Metafunctions`:
+
+.. include:: Metafunctions.rst
+.. |Metafunctions| replace:: `Metafunctions`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Concepts
+////////
+.. _`label-Metafunctions-Concepts`:
+
+.. include:: Metafunction.rst
+.. |Metafunction| replace:: `Metafunction`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: MetafunctionClass.rst
+.. |Metafunction Class| replace:: `Metafunction Class`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LambdaExpression.rst
+.. |Lambda Expression| replace:: `Lambda Expression`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: PlaceholderExpression.rst
+.. |Placeholder Expression| replace:: `Placeholder Expression`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: TagDispatchedMetafunction.rst
+.. |Tag Dispatched Metafunction| replace:: `Tag Dispatched Metafunction`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: NumericMetafunction.rst
+.. |Numeric Metafunction| replace:: `Numeric Metafunction`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: TrivialMetafunction.rst
+.. |Trivial Metafunction| replace:: `Trivial Metafunction`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Type Selection
+//////////////
+.. _`label-Metafunctions-Type Selection`:
+
+.. include:: Metafunctions-Type.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: if_.rst
+.. |if_| replace:: |``if_``|__
+.. |``if_``| replace:: :refentry:`if_`
+__ `if_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: if_c.rst
+.. |if_c| replace:: |``if_c``|__
+.. |``if_c``| replace:: :refentry:`if_c`
+__ `if_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: eval_if.rst
+.. |eval_if| replace:: |``eval_if``|__
+.. |``eval_if``| replace:: :refentry:`eval_if`
+__ `eval_if`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: eval_if_c.rst
+.. |eval_if_c| replace:: |``eval_if_c``|__
+.. |``eval_if_c``| replace:: :refentry:`eval_if_c`
+__ `eval_if_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Invocation
+//////////
+.. _`label-Metafunctions-Invocation`:
+
+.. include:: Metafunctions-Invocation.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: apply.rst
+.. |apply| replace:: |``apply``|__
+.. |``apply``| replace:: :refentry:`apply`
+__ `apply`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: apply_wrap.rst
+.. |apply_wrap| replace:: |``apply_wrap``|__
+.. |``apply_wrap``| replace:: :refentry:`apply_wrap`
+__ `apply_wrap`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: unpack_args.rst
+.. |unpack_args| replace:: |``unpack_args``|__
+.. |``unpack_args``| replace:: :refentry:`unpack_args`
+__ `unpack_args`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Composition and Argument Binding
+////////////////////////////////
+.. _`label-Metafunctions-Composition and Argument Binding`:
+
+.. include:: Metafunctions-Composition.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: Placeholders.rst
+.. |Placeholders| replace:: `Placeholders`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: lambda.rst
+.. |lambda| replace:: |``lambda``|__
+.. |``lambda``| replace:: :refentry:`lambda`
+__ `lambda`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: bind.rst
+.. |bind| replace:: |``bind``|__
+.. |``bind``| replace:: :refentry:`bind`
+__ `bind`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: quote.rst
+.. |quote| replace:: |``quote``|__
+.. |``quote``| replace:: :refentry:`quote`
+__ `quote`_
+.. modtime: February 08, 2005 18:05:42 +0000
+
+.. include:: arg.rst
+.. |arg| replace:: |``arg``|__
+.. |``arg``| replace:: :refentry:`arg`
+__ `arg`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: protect.rst
+.. |protect| replace:: |``protect``|__
+.. |``protect``| replace:: :refentry:`protect`
+__ `protect`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Arithmetic Operations
+/////////////////////
+.. _`label-Metafunctions-Arithmetic Operations`:
+
+.. include:: Metafunctions-Arithmetic.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: plus.rst
+.. |plus| replace:: |``plus``|__
+.. |``plus``| replace:: :refentry:`plus`
+__ `plus`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: minus.rst
+.. |minus| replace:: |``minus``|__
+.. |``minus``| replace:: :refentry:`minus`
+__ `minus`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: times.rst
+.. |times| replace:: |``times``|__
+.. |``times``| replace:: :refentry:`times`
+__ `times`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: divides.rst
+.. |divides| replace:: |``divides``|__
+.. |``divides``| replace:: :refentry:`divides`
+__ `divides`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: modulus.rst
+.. |modulus| replace:: |``modulus``|__
+.. |``modulus``| replace:: :refentry:`modulus`
+__ `modulus`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: negate.rst
+.. |negate| replace:: |``negate``|__
+.. |``negate``| replace:: :refentry:`negate`
+__ `negate`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Comparisons
+///////////
+.. _`label-Metafunctions-Comparisons`:
+
+.. include:: Metafunctions-Comparisons.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: less.rst
+.. |less| replace:: |``less``|__
+.. |``less``| replace:: :refentry:`less`
+__ `less`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: less_equal.rst
+.. |less_equal| replace:: |``less_equal``|__
+.. |``less_equal``| replace:: :refentry:`less_equal`
+__ `less_equal`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: greater.rst
+.. |greater| replace:: |``greater``|__
+.. |``greater``| replace:: :refentry:`greater`
+__ `greater`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: greater_equal.rst
+.. |greater_equal| replace:: |``greater_equal``|__
+.. |``greater_equal``| replace:: :refentry:`greater_equal`
+__ `greater_equal`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: equal_to.rst
+.. |equal_to| replace:: |``equal_to``|__
+.. |``equal_to``| replace:: :refentry:`equal_to`
+__ `equal_to`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: not_equal_to.rst
+.. |not_equal_to| replace:: |``not_equal_to``|__
+.. |``not_equal_to``| replace:: :refentry:`not_equal_to`
+__ `not_equal_to`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Logical Operations
+//////////////////
+.. _`label-Metafunctions-Logical Operations`:
+
+.. include:: Metafunctions-Logical.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: and_.rst
+.. |and_| replace:: |``and_``|__
+.. |``and_``| replace:: :refentry:`and_`
+__ `and_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: or_.rst
+.. |or_| replace:: |``or_``|__
+.. |``or_``| replace:: :refentry:`or_`
+__ `or_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: not_.rst
+.. |not_| replace:: |``not_``|__
+.. |``not_``| replace:: :refentry:`not_`
+__ `not_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Bitwise Operations
+//////////////////
+.. _`label-Metafunctions-Bitwise Operations`:
+
+.. include:: Metafunctions-Bitwise.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: bitand_.rst
+.. |bitand_| replace:: |``bitand_``|__
+.. |``bitand_``| replace:: :refentry:`bitand_`
+__ `bitand_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: bitor_.rst
+.. |bitor_| replace:: |``bitor_``|__
+.. |``bitor_``| replace:: :refentry:`bitor_`
+__ `bitor_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: bitxor_.rst
+.. |bitxor_| replace:: |``bitxor_``|__
+.. |``bitxor_``| replace:: :refentry:`bitxor_`
+__ `bitxor_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: shift_left.rst
+.. |shift_left| replace:: |``shift_left``|__
+.. |``shift_left``| replace:: :refentry:`shift_left`
+__ `shift_left`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: shift_right.rst
+.. |shift_right| replace:: |``shift_right``|__
+.. |``shift_right``| replace:: :refentry:`shift_right`
+__ `shift_right`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Trivial
+///////
+.. _`label-Metafunctions-Trivial`:
+
+.. include:: Metafunctions-Trivial.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Miscellaneous
+/////////////
+.. _`label-Metafunctions-Miscellaneous`:
+
+.. include:: identity.rst
+.. |identity| replace:: |``identity``|__
+.. |``identity``| replace:: :refentry:`identity`
+__ `identity`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: always.rst
+.. |always| replace:: |``always``|__
+.. |``always``| replace:: :refentry:`always`
+__ `always`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: inherit.rst
+.. |inherit| replace:: |``inherit``|__
+.. |``inherit``| replace:: :refentry:`inherit`
+__ `inherit`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: inherit_linearly.rst
+.. |inherit_linearly| replace:: |``inherit_linearly``|__
+.. |``inherit_linearly``| replace:: :refentry:`inherit_linearly`
+__ `inherit_linearly`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: numeric_cast.rst
+.. |numeric_cast| replace:: |``numeric_cast``|__
+.. |``numeric_cast``| replace:: :refentry:`numeric_cast`
+__ `numeric_cast`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: min.rst
+.. |min| replace:: |``min``|__
+.. |``min``| replace:: :refentry:`min`
+__ `min`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: max.rst
+.. |max| replace:: |``max``|__
+.. |``max``| replace:: :refentry:`max`
+__ `max`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: sizeof_.rst
+.. |sizeof_| replace:: |``sizeof_``|__
+.. |``sizeof_``| replace:: :refentry:`sizeof_`
+__ `sizeof_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Data Types
+++++++++++
+.. _`label-Data Types`:
+
+.. include:: Data.rst
+.. |Data| replace:: `Data`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Concepts
+////////
+.. _`label-Data Types-Concepts`:
+
+.. include:: IntegralConstant.rst
+.. |Integral Constant| replace:: `Integral Constant`_
+.. modtime: July 28, 2006 06:08:03 +0000
+
+
+Numeric
+///////
+.. _`label-Data Types-Numeric`:
+
+.. include:: bool_.rst
+.. |bool_| replace:: |``bool_``|__
+.. |``bool_``| replace:: :refentry:`bool_`
+__ `bool_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: int_.rst
+.. |int_| replace:: |``int_``|__
+.. |``int_``| replace:: :refentry:`int_`
+__ `int_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: long_.rst
+.. |long_| replace:: |``long_``|__
+.. |``long_``| replace:: :refentry:`long_`
+__ `long_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: size_t.rst
+.. |size_t| replace:: |``size_t``|__
+.. |``size_t``| replace:: :refentry:`size_t`
+__ `size_t`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: integral_c.rst
+.. |integral_c| replace:: |``integral_c``|__
+.. |``integral_c``| replace:: :refentry:`integral_c`
+__ `integral_c`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Miscellaneous
+/////////////
+.. _`label-Data Types-Miscellaneous`:
+
+.. include:: pair.rst
+.. |pair| replace:: |``pair``|__
+.. |``pair``| replace:: :refentry:`pair`
+__ `pair`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: empty_base.rst
+.. |empty_base| replace:: |``empty_base``|__
+.. |``empty_base``| replace:: :refentry:`empty_base`
+__ `empty_base`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+.. include:: void_.rst
+.. |void_| replace:: |``void_``|__
+.. |``void_``| replace:: :refentry:`void_`
+__ `void_`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Macros
+++++++
+.. _`label-Macros`:
+
+.. include:: Macros.rst
+.. |Macros| replace:: `Macros`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Asserts
+///////
+.. _`label-Macros-Asserts`:
+
+.. include:: Macros-Asserts.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ASSERT.rst
+.. |BOOST_MPL_ASSERT| replace:: |``BOOST_MPL_ASSERT``|__
+.. |``BOOST_MPL_ASSERT``| replace:: :refentry:`BOOST_MPL_ASSERT`
+__ `BOOST_MPL_ASSERT`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ASSERT_MSG.rst
+.. |BOOST_MPL_ASSERT_MSG| replace:: |``BOOST_MPL_ASSERT_MSG``|__
+.. |``BOOST_MPL_ASSERT_MSG``| replace:: :refentry:`BOOST_MPL_ASSERT_MSG`
+__ `BOOST_MPL_ASSERT_MSG`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ASSERT_NOT.rst
+.. |BOOST_MPL_ASSERT_NOT| replace:: |``BOOST_MPL_ASSERT_NOT``|__
+.. |``BOOST_MPL_ASSERT_NOT``| replace:: :refentry:`BOOST_MPL_ASSERT_NOT`
+__ `BOOST_MPL_ASSERT_NOT`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: ASSERT_RELATION.rst
+.. |BOOST_MPL_ASSERT_RELATION| replace:: |``BOOST_MPL_ASSERT_RELATION``|__
+.. |``BOOST_MPL_ASSERT_RELATION``| replace:: :refentry:`BOOST_MPL_ASSERT_RELATION`
+__ `BOOST_MPL_ASSERT_RELATION`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Introspection
+/////////////
+.. _`label-Macros-Introspection`:
+
+.. include:: HAS_XXX_TRAIT_DEF.rst
+.. |BOOST_MPL_HAS_XXX_TRAIT_DEF| replace:: |``BOOST_MPL_HAS_XXX_TRAIT_DEF``|__
+.. |``BOOST_MPL_HAS_XXX_TRAIT_DEF``| replace:: :refentry:`BOOST_MPL_HAS_XXX_TRAIT_DEF`
+__ `BOOST_MPL_HAS_XXX_TRAIT_DEF`_
+.. modtime: April 04, 2005 17:27:04 +0000
+
+.. include:: HAS_XXX_TRAIT_NAMED_DEF.rst
+.. |BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF| replace:: |``BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF``|__
+.. |``BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF``| replace:: :refentry:`BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF`
+__ `BOOST_MPL_HAS_XXX_TRAIT_NAMED_DEF`_
+.. modtime: April 01, 2005 21:23:16 +0000
+
+
+Configuration
+/////////////
+.. _`label-Macros-Configuration`:
+
+.. include:: Macros-Configuration.rst
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: CFG_NO_PREPROCESSED.rst
+.. |BOOST_MPL_CFG_NO_PREPROCESSED| replace:: |``BOOST_MPL_CFG_NO_PREPROCESSED``|__
+.. |``BOOST_MPL_CFG_NO_PREPROCESSED``| replace:: :refentry:`BOOST_MPL_CFG_NO_PREPROCESSED`
+__ `BOOST_MPL_CFG_NO_PREPROCESSED`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: CFG_NO_HAS_XXX.rst
+.. |BOOST_MPL_CFG_NO_HAS_XXX| replace:: |``BOOST_MPL_CFG_NO_HAS_XXX``|__
+.. |``BOOST_MPL_CFG_NO_HAS_XXX``| replace:: :refentry:`BOOST_MPL_CFG_NO_HAS_XXX`
+__ `BOOST_MPL_CFG_NO_HAS_XXX`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_METAFUNCTION_ARITY.rst
+.. |BOOST_MPL_LIMIT_METAFUNCTION_ARITY| replace:: |``BOOST_MPL_LIMIT_METAFUNCTION_ARITY``|__
+.. |``BOOST_MPL_LIMIT_METAFUNCTION_ARITY``| replace:: :refentry:`BOOST_MPL_LIMIT_METAFUNCTION_ARITY`
+__ `BOOST_MPL_LIMIT_METAFUNCTION_ARITY`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_VECTOR_SIZE.rst
+.. |BOOST_MPL_LIMIT_VECTOR_SIZE| replace:: |``BOOST_MPL_LIMIT_VECTOR_SIZE``|__
+.. |``BOOST_MPL_LIMIT_VECTOR_SIZE``| replace:: :refentry:`BOOST_MPL_LIMIT_VECTOR_SIZE`
+__ `BOOST_MPL_LIMIT_VECTOR_SIZE`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_LIST_SIZE.rst
+.. |BOOST_MPL_LIMIT_LIST_SIZE| replace:: |``BOOST_MPL_LIMIT_LIST_SIZE``|__
+.. |``BOOST_MPL_LIMIT_LIST_SIZE``| replace:: :refentry:`BOOST_MPL_LIMIT_LIST_SIZE`
+__ `BOOST_MPL_LIMIT_LIST_SIZE`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_SET_SIZE.rst
+.. |BOOST_MPL_LIMIT_SET_SIZE| replace:: |``BOOST_MPL_LIMIT_SET_SIZE``|__
+.. |``BOOST_MPL_LIMIT_SET_SIZE``| replace:: :refentry:`BOOST_MPL_LIMIT_SET_SIZE`
+__ `BOOST_MPL_LIMIT_SET_SIZE`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_MAP_SIZE.rst
+.. |BOOST_MPL_LIMIT_MAP_SIZE| replace:: |``BOOST_MPL_LIMIT_MAP_SIZE``|__
+.. |``BOOST_MPL_LIMIT_MAP_SIZE``| replace:: :refentry:`BOOST_MPL_LIMIT_MAP_SIZE`
+__ `BOOST_MPL_LIMIT_MAP_SIZE`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+.. include:: LIMIT_UNROLLING.rst
+.. |BOOST_MPL_LIMIT_UNROLLING| replace:: |``BOOST_MPL_LIMIT_UNROLLING``|__
+.. |``BOOST_MPL_LIMIT_UNROLLING``| replace:: :refentry:`BOOST_MPL_LIMIT_UNROLLING`
+__ `BOOST_MPL_LIMIT_UNROLLING`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Broken Compiler Workarounds
+///////////////////////////
+.. _`label-Macros-Broken Compiler Workarounds`:
+
+.. include:: AUX_LAMBDA_SUPPORT.rst
+.. |BOOST_MPL_AUX_LAMBDA_SUPPORT| replace:: |``BOOST_MPL_AUX_LAMBDA_SUPPORT``|__
+.. |``BOOST_MPL_AUX_LAMBDA_SUPPORT``| replace:: :refentry:`BOOST_MPL_AUX_LAMBDA_SUPPORT`
+__ `BOOST_MPL_AUX_LAMBDA_SUPPORT`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Terminology
++++++++++++
+.. _`label-Terminology`:
+
+.. include:: Terminology.rst
+.. |Terminology| replace:: `Terminology`_
+.. modtime: November 29, 2004 06:33:06 +0000
+
+
+Categorized Index
++++++++++++++++++
+.. _`label-Categorized Index`:
+
+.. include:: Categorized.rst
+.. |Categorized| replace:: `Categorized`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
+
+Acknowledgements
+++++++++++++++++
+.. _`label-Acknowledgements`:
+
+.. include:: Acknowledgements.rst
+.. |Acknowledgements| replace:: `Acknowledgements`_
+.. modtime: November 29, 2004 06:33:05 +0000
+
