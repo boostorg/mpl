@@ -76,14 +76,14 @@ For any |Forward Sequence| ``s``, |Lambda Expression| ``op`` , and an
     .. parsed-literal::
 
         typedef begin<Sequence>::type i\ :sub:`1`;
-        |value_initialized|< deref<i\ :sub:`1`>::type > x\ :sub:`1`;
+        |value_initialized|\ < deref<i\ :sub:`1`>::type > x\ :sub:`1`;
         f(boost::get(x\ :sub:`1`));
 
         typedef next<i\ :sub:`1`>::type i\ :sub:`2`;
-        |value_initialized|< deref<i\ :sub:`2`>::type > x\ :sub:`2`;
+        |value_initialized|\ < deref<i\ :sub:`2`>::type > x\ :sub:`2`;
         f(boost::get(x\ :sub:`2`));
         |...|
-        |value_initialized|< deref<i\ :sub:`n`>::type > x\ :sub:`n`;
+        |value_initialized|\ < deref<i\ :sub:`n`>::type > x\ :sub:`n`;
         f(boost::get(x\ :sub:`n`));
         typedef next<i\ :sub:`n`>::type last; 
         
