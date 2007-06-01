@@ -42,7 +42,7 @@ compile inherit.cpp ;
 compile insert.cpp ;
 compile insert_range.cpp ;
 run int.cpp ;
-run integral_c.cpp ;
+run integral_c.cpp : : : <toolset>vacpp:<cxxflags>-qchars=signed ;
 compile is_placeholder.cpp ;
 compile is_sequence.cpp ;
 compile iterator_tags.cpp ;
