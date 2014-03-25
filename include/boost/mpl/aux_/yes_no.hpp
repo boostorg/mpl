@@ -14,6 +14,7 @@
 // $Date$
 // $Revision$
 
+#include <boost/mpl/aux_/nttp_decl.hpp>
 #include <boost/mpl/aux_/config/arrays.hpp>
 #include <boost/mpl/aux_/config/msvc.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
@@ -35,9 +36,14 @@ template<> struct yes_no_tag<true>
 };
 
 
-template< long n > struct weighted_tag
+template< BOOST_MPL_AUX_NTTP_DECL(long, n) > struct weighted_tag
 {
+#if !BOOST_WORKAROUND(BOOST_MSVC, < 1300)
     typedef char (&type)[n];
+#else
+    char buf[n];
+    typedef weighted_tag type;
+#endif
 };
 
 #if defined(BOOST_MPL_CFG_NO_DEPENDENT_ARRAY_TYPES)

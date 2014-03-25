@@ -48,6 +48,7 @@ struct empty_impl< aux::vector_tag<0> >
     };
 };
 
+#if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 
 template< long N >
 struct empty_impl< aux::vector_tag<N> >
@@ -58,6 +59,7 @@ struct empty_impl< aux::vector_tag<N> >
     };
 };
 
+#endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 #endif // BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES
 

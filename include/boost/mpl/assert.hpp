@@ -21,6 +21,7 @@
 #include <boost/mpl/aux_/na.hpp>
 #include <boost/mpl/aux_/adl_barrier.hpp>
 
+#include <boost/mpl/aux_/config/nttp.hpp>
 #include <boost/mpl/aux_/config/dtp.hpp>
 #include <boost/mpl/aux_/config/gcc.hpp>
 #include <boost/mpl/aux_/config/msvc.hpp>
@@ -115,7 +116,7 @@ bool operator<=( failed, failed );
 template< bool (*)(failed, failed), long x, long y > struct assert_relation {};
 #   define BOOST_MPL_AUX_ASSERT_RELATION(x, y, r) assert_relation<r,x,y>
 #else
-template< long x, long y, bool (*)(failed, failed) > 
+template< BOOST_MPL_AUX_NTTP_DECL(long, x), BOOST_MPL_AUX_NTTP_DECL(long, y), bool (*)(failed, failed) > 
 struct assert_relation {};
 #   define BOOST_MPL_AUX_ASSERT_RELATION(x, y, r) assert_relation<x,y,r>
 #endif
@@ -292,7 +293,18 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
 
 // BOOST_MPL_ASSERT_NOT((pred<x,...>))
 
-#define BOOST_MPL_ASSERT_NOT(pred) \
+#if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
+#   define BOOST_MPL_ASSERT_NOT(pred) \
+enum { \
+      BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+          boost::mpl::assertion<false>::failed( \
+              boost::mpl::assert_not_arg( (void (*) pred)0, 1 ) \
+            ) \
+        ) \
+}\
+/**/
+#else
+#   define BOOST_MPL_ASSERT_NOT(pred) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
       std::size_t \
     , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
@@ -302,6 +314,7 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
         ) \
    ) \
 /**/
+#endif
 
 #endif
 

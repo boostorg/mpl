@@ -19,6 +19,7 @@
 #include <boost/mpl/aux_/size_impl.hpp>
 #include <boost/mpl/aux_/na_spec.hpp>
 #include <boost/mpl/aux_/lambda_support.hpp>
+#include <boost/mpl/aux_/msvc_eti_base.hpp>
 
 namespace boost { namespace mpl {
 
@@ -26,8 +27,10 @@ template<
       typename BOOST_MPL_AUX_NA_PARAM(Sequence)
     >
 struct size
-    : size_impl< typename sequence_tag<Sequence>::type >
-        ::template apply< Sequence >::type
+    : aux::msvc_eti_base<
+        typename size_impl< typename sequence_tag<Sequence>::type >
+            ::template apply< Sequence >::type
+      >::type
 {
     BOOST_MPL_AUX_LAMBDA_SUPPORT(1, size, (Sequence))
 };

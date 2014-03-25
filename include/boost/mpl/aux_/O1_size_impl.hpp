@@ -29,7 +29,8 @@ namespace boost { namespace mpl {
 // member, and -1 otherwise; conrete sequences might override it by 
 // specializing either the 'O1_size_impl' or the primary 'O1_size' template
 
-#   if !BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3003))
+#   if !BOOST_WORKAROUND(BOOST_MSVC, < 1300) \
+    && !BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3003))
 
 namespace aux {
 template< typename Sequence > struct O1_size_impl
@@ -68,7 +69,7 @@ struct O1_size_impl
     };
 };
 
-#   else // __MWERKS__
+#   else // BOOST_MSVC
 
 template< typename Tag >
 struct O1_size_impl

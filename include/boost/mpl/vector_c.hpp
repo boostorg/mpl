@@ -16,6 +16,7 @@
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
 #   include <boost/mpl/limits/vector.hpp>
+#   include <boost/mpl/aux_/nttp_decl.hpp>
 #   include <boost/mpl/aux_/config/preprocessor.hpp>
 
 #   include <boost/preprocessor/inc.hpp>

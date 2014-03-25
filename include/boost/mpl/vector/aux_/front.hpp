@@ -17,6 +17,7 @@
 #include <boost/mpl/front_fwd.hpp>
 #include <boost/mpl/vector/aux_/at.hpp>
 #include <boost/mpl/vector/aux_/tag.hpp>
+#include <boost/mpl/aux_/nttp_decl.hpp>
 #include <boost/mpl/aux_/config/typeof.hpp>
 #include <boost/mpl/aux_/config/ctps.hpp>
 
@@ -35,8 +36,9 @@ struct front_impl< aux::vector_tag >
 
 #else
 
+#if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 
-template< long n_ >
+template< BOOST_MPL_AUX_NTTP_DECL(long, n_) >
 struct front_impl< aux::vector_tag<n_> >
 {
     template< typename Vector > struct apply
@@ -45,6 +47,7 @@ struct front_impl< aux::vector_tag<n_> >
     };
 };
 
+#endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 #endif // BOOST_MPL_CFG_TYPEOF_BASED_SEQUENCES
 

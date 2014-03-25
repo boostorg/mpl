@@ -32,6 +32,30 @@ namespace boost { namespace mpl {
 namespace aux {
 struct pair_iter_tag;
 
+#if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
+
+template< typename Iter1, typename Iter2, typename Category >
+struct pair_iter;
+
+template< typename Category > struct prior_pair_iter
+{
+    template< typename Iter1, typename Iter2 > struct apply
+    {
+        typedef typename mpl::prior<Iter1>::type i1_;
+        typedef typename mpl::prior<Iter2>::type i2_;
+        typedef pair_iter<i1_,i2_,Category> type;
+    };
+};
+
+template<> struct prior_pair_iter<forward_iterator_tag>
+{
+    template< typename Iter1, typename Iter2 > struct apply
+    {
+        typedef pair_iter<Iter1,Iter2,forward_iterator_tag> type;
+    };
+};
+
+#endif
 }
 
 template< 
@@ -46,9 +70,22 @@ struct pair_iter
     typedef Iter1 first;
     typedef Iter2 second;
     
+#if defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
+    typedef pair< 
+          typename deref<Iter1>::type
+        , typename deref<Iter2>::type
+        > type;
+
+    typedef typename mpl::next<Iter1>::type i1_;
+    typedef typename mpl::next<Iter2>::type i2_;
+    typedef pair_iter<i1_,i2_,Category> next;
+    
+    typedef apply_wrap2< aux::prior_pair_iter<Category>,Iter1,Iter2 >::type prior;
+#endif
 };
 
 
+#if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 
 template< typename Iter1, typename Iter2, typename C >
 struct deref< pair_iter<Iter1,Iter2,C> >
@@ -75,6 +112,7 @@ struct prior< pair_iter<Iter1,Iter2,C> >
     typedef pair_iter<i1_,i2_,C> type;
 };
 
+#endif // BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 
 template<> struct advance_impl<aux::pair_iter_tag>

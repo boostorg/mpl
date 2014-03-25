@@ -25,6 +25,7 @@
 #include <boost/mpl/aux_/advance_backward.hpp>
 #include <boost/mpl/aux_/value_wknd.hpp>
 #include <boost/mpl/aux_/na_spec.hpp>
+#include <boost/mpl/aux_/nttp_decl.hpp>
 
 namespace boost { namespace mpl {
 
@@ -60,7 +61,7 @@ struct advance
 
 template<
       typename Iterator
-    , long N
+    , BOOST_MPL_AUX_NTTP_DECL(long, N)
     >
 struct advance_c
     : advance_impl< typename tag<Iterator>::type >

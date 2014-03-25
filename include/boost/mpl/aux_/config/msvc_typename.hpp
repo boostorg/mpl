@@ -14,7 +14,13 @@
 // $Date$
 // $Revision$
 
-// Obsolete. Remove.
-#define BOOST_MSVC_TYPENAME typename
+#include <boost/mpl/aux_/config/msvc.hpp>
+#include <boost/mpl/aux_/config/workaround.hpp>
+
+#if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
+#   define BOOST_MSVC_TYPENAME
+#else
+#   define BOOST_MSVC_TYPENAME typename
+#endif
 
 #endif // BOOST_MPL_AUX_CONFIG_MSVC_TYPENAME_HPP_INCLUDED

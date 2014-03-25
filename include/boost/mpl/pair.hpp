@@ -14,8 +14,10 @@
 // $Date$
 // $Revision$
 
+#include <boost/mpl/aux_/msvc_eti_base.hpp>
 #include <boost/mpl/aux_/na_spec.hpp>
 #include <boost/mpl/aux_/lambda_support.hpp>
+#include <boost/mpl/aux_/config/eti.hpp>
 
 namespace boost { namespace mpl {
 
@@ -37,7 +39,11 @@ template<
     >
 struct first
 {
+#if !defined(BOOST_MPL_CFG_MSVC_70_ETI_BUG)
     typedef typename P::first type;
+#else
+    typedef typename aux::msvc_eti_base<P>::first type;
+#endif
     BOOST_MPL_AUX_LAMBDA_SUPPORT(1,first,(P))
 };
 
@@ -46,7 +52,11 @@ template<
     >
 struct second
 {
+#if !defined(BOOST_MPL_CFG_MSVC_70_ETI_BUG)
     typedef typename P::second type;
+#else
+    typedef typename aux::msvc_eti_base<P>::second type;
+#endif
     BOOST_MPL_AUX_LAMBDA_SUPPORT(1,second,(P))
 };
 

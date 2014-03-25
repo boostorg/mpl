@@ -15,10 +15,11 @@
 // $Revision$
 
 #include <boost/mpl/aux_/adl_barrier.hpp>
+#include <boost/mpl/aux_/nttp_decl.hpp>
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 
-template< long N > struct long_;
+template< BOOST_MPL_AUX_NTTP_DECL(long, N) > struct long_;
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_CLOSE
 BOOST_MPL_AUX_ADL_BARRIER_DECL(long_)

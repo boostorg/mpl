@@ -20,6 +20,7 @@
 #include <boost/mpl/sequence_tag.hpp>
 #include <boost/mpl/aux_/na_spec.hpp>
 #include <boost/mpl/aux_/lambda_support.hpp>
+#include <boost/mpl/aux_/nttp_decl.hpp>
 
 namespace boost { namespace mpl {
 
@@ -36,7 +37,7 @@ struct at
 
 template<
       typename Sequence
-    , long N
+    , BOOST_MPL_AUX_NTTP_DECL(long, N)
     >
 struct at_c
     : at_impl< typename sequence_tag<Sequence>::type >
