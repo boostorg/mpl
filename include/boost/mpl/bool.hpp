@@ -26,7 +26,7 @@ template< bool C_ > struct bool_
     typedef integral_c_tag tag;
     typedef bool_ type;
     typedef bool value_type;
-    operator bool() const { return this->value; }
+    BOOST_CONSTEXPR operator bool() const { return this->value; }
 };
 
 #if !defined(BOOST_NO_INCLASS_MEMBER_INITIALIZATION)
