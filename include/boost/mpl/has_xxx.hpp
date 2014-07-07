@@ -156,6 +156,7 @@ template<> struct trait<T> \
 // posting by Rani Sharoni (comp.lang.c++.moderated, 2002-03-17 07:45:09 PST)
 
 #   elif BOOST_WORKAROUND(BOOST_MSVC, <= 1400) \
+      || (BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1800)) && defined(__CUDACC__)) \
       || BOOST_WORKAROUND(__IBMCPP__, <= 700)
 
 // MSVC 7.1 & MSVC 8.0 & VACPP
