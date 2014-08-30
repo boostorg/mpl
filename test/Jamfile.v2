@@ -56,7 +56,6 @@ compile list_c.cpp ;
 compile lower_bound.cpp ;
 compile map.cpp ;
 compile max_element.cpp ;
-compile min_max.cpp ;
 compile multiset.cpp ;
 compile next.cpp ;
 compile pair_view.cpp ;

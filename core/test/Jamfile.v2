@@ -26,6 +26,7 @@ run int.cpp ;
 run char.cpp ;
 run integral_c.cpp : : : <toolset>vacpp:<cxxflags>-qchars=signed ;
 compile logical.cpp ;
+compile min_max.cpp ;
 compile no_has_xxx.cpp ;
 compile numeric_ops.cpp ;
 run print.cpp ;
