@@ -75,7 +75,6 @@ compile set.cpp ;
 compile set_c.cpp ;
 compile single_view.cpp ;
 compile size.cpp ;
-compile sizeof.cpp ;
 compile sort.cpp ;
 compile stable_partition.cpp ;
 compile transform.cpp ;

@@ -31,3 +31,4 @@ compile no_has_xxx.cpp ;
 compile numeric_ops.cpp ;
 run print.cpp ;
 run size_t.cpp ;
+compile sizeof.cpp ;
