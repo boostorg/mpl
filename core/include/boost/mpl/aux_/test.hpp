@@ -17,7 +17,7 @@
 #include <boost/mpl/aux_/test/test_case.hpp>
 #include <boost/mpl/aux_/test/data.hpp>
 #include <boost/mpl/aux_/test/assert.hpp>
-#include <boost/detail/lightweight_test.hpp>
+#include <boost/core/lightweight_test.hpp>
 
 int main()
 {
