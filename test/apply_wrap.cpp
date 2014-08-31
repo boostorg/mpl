@@ -16,6 +16,7 @@
 #include <boost/mpl/aux_/preprocessor/params.hpp>
 #include <boost/mpl/aux_/preprocessor/enum.hpp>
 #include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 #include <boost/preprocessor/repeat.hpp>
 #include <boost/preprocessor/comma_if.hpp>

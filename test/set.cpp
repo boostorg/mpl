@@ -31,6 +31,7 @@
 
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
 
 // Use templates for testing so that GCC will show us the actual types involved
 

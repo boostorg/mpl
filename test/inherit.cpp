@@ -13,6 +13,7 @@
 
 #include <boost/mpl/inherit.hpp>
 #include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 struct her { typedef her herself; };
 struct my { typedef my myself; };

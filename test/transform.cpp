@@ -23,6 +23,7 @@
 #include <boost/mpl/aux_/config/gcc.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
 
+#include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/add_pointer.hpp>
 
 

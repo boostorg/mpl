@@ -20,6 +20,8 @@
 
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 
 MPL_TEST_CASE()
 {

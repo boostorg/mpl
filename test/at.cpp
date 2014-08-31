@@ -14,11 +14,12 @@
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/vector/vector10_c.hpp>
 #include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 template< typename Seq, int n > struct at_test
 {
     typedef typename at_c<Seq,n>::type t;
-    MPL_ASSERT(( is_same< t, integral_c<int,9-n> > ));
+    MPL_ASSERT(( boost::is_same< t, integral_c<int,9-n> > ));
     MPL_ASSERT_RELATION( t::value, ==, 9 - n );
 };
 

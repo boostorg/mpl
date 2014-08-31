@@ -17,6 +17,7 @@
 #include <boost/mpl/range_c.hpp>
 #include <boost/mpl/distance.hpp>
 #include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 
 MPL_TEST_CASE()

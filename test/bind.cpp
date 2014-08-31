@@ -21,6 +21,7 @@
 #include <boost/mpl/aux_/test.hpp>
 
 #include <boost/type_traits/is_float.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 namespace {
 

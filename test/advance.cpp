@@ -15,6 +15,8 @@
 #include <boost/mpl/iterator_tags.hpp>
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 template< int pos > struct iter
 {
     typedef mpl::bidirectional_iterator_tag category;

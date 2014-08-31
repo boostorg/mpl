@@ -17,6 +17,8 @@
 
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 #if !BOOST_WORKAROUND(BOOST_MSVC, <=1200)
 MPL_TEST_CASE()
 {

@@ -18,6 +18,8 @@
 
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 namespace test { namespace {
 #if !BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
 template< typename S, typename S::value_type k > 

@@ -20,6 +20,8 @@
 #include <boost/mpl/begin_end.hpp>
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 MPL_TEST_CASE()
 {
     typedef list<int,char,long,short,char,long,double,long> types;

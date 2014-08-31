@@ -23,6 +23,7 @@
 #include <boost/mpl/find.hpp>
 
 #include <boost/config.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 /*
 struct test_data1

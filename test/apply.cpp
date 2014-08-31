@@ -17,6 +17,8 @@
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+
 
 template< typename T > struct std_vector
 {

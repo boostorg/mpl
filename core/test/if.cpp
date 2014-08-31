@@ -14,6 +14,7 @@
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
 MPL_TEST_CASE()
 {
