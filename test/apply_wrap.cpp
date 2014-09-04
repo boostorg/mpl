@@ -15,7 +15,6 @@
 #include <boost/mpl/limits/arity.hpp>
 #include <boost/mpl/aux_/preprocessor/params.hpp>
 #include <boost/mpl/aux_/preprocessor/enum.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/type_traits/is_same.hpp>
 
 #include <boost/preprocessor/repeat.hpp>
@@ -23,6 +22,8 @@
 #include <boost/preprocessor/dec.hpp>
 #include <boost/preprocessor/if.hpp>
 #include <boost/preprocessor/cat.hpp>
+
+#include "test.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_DEFAULT_PARAMETERS_IN_NESTED_TEMPLATES)
 #   define APPLY_0_FUNC_DEF(i) \

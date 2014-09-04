@@ -1,6 +1,6 @@
 
-#ifndef BOOST_MPL_AUX_TEST_HPP_INCLUDED
-#define BOOST_MPL_AUX_TEST_HPP_INCLUDED
+#ifndef BOOST_MPL_TEST_TEST_HPP_INCLUDED
+#define BOOST_MPL_TEST_TEST_HPP_INCLUDED
 
 // Copyright Aleksey Gurtovoy 2002-2004
 //
@@ -14,9 +14,9 @@
 // $Date$
 // $Revision$
 
-#include <boost/mpl/aux_/test/test_case.hpp>
-#include <boost/mpl/aux_/test/data.hpp>
-#include <boost/mpl/aux_/test/assert.hpp>
+#include "test/test_case.hpp"
+#include "test/data.hpp"
+#include "test/assert.hpp"
 #include <boost/core/lightweight_test.hpp>
 
 int main()
@@ -27,4 +27,4 @@ int main()
 using namespace boost;
 using namespace mpl;
 
-#endif // BOOST_MPL_AUX_TEST_HPP_INCLUDED
+#endif // BOOST_MPL_TEST_TEST_HPP_INCLUDED

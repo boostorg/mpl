@@ -13,9 +13,9 @@
 
 #include <boost/mpl/advance.hpp>
 #include <boost/mpl/iterator_tags.hpp>
-#include <boost/mpl/aux_/test.hpp>
-
 #include <boost/type_traits/is_same.hpp>
+
+#include "test.hpp"
 
 template< int pos > struct iter
 {

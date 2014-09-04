@@ -12,8 +12,8 @@
 // $Revision$
 
 #include <boost/mpl/bool.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 #include <cassert>
 

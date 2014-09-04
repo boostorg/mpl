@@ -16,7 +16,7 @@
 #include <boost/mpl/and.hpp>
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/long.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 struct complex_tag : int_<10> {};
 

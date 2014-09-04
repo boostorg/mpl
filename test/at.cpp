@@ -13,8 +13,8 @@
 
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/vector/vector10_c.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 template< typename Seq, int n > struct at_test
 {
@@ -26,7 +26,7 @@ template< typename Seq, int n > struct at_test
 MPL_TEST_CASE()
 {
     typedef vector10_c<int,9,8,7,6,5,4,3,2,1,0> numbers;
-    
+
     at_test< numbers, 0 >();
     at_test< numbers, 1 >();
     at_test< numbers, 2 >();

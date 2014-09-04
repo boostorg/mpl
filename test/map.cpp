@@ -26,7 +26,7 @@
 #include <boost/mpl/begin_end.hpp>
 #include <boost/type_traits/is_same.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 
 MPL_TEST_CASE()
@@ -41,7 +41,7 @@ MPL_TEST_CASE()
     MPL_ASSERT_RELATION( size<m>::type::value, ==, 1 );
     MPL_ASSERT_NOT(( empty<m> ));
     MPL_ASSERT(( is_same< clear<m>::type,map0<> > ));
-    
+
     MPL_ASSERT(( is_same< at<m,int>::type,unsigned > ));
     MPL_ASSERT(( is_same< at<m,char>::type,void_ > ));
     MPL_ASSERT(( contains< m,mpl::pair<int,unsigned> > ));
@@ -50,7 +50,7 @@ MPL_TEST_CASE()
 
     MPL_ASSERT_NOT(( has_key<m,char>::type ));
     MPL_ASSERT(( has_key<m,int>::type ));
-    
+
     MPL_ASSERT_NOT(( is_same< order<m,int>::type, void_ > ));
     MPL_ASSERT(( is_same< order<m,char>::type,void_ > ));
 
@@ -126,7 +126,7 @@ MPL_TEST_CASE()
 MPL_TEST_CASE()
 {
     typedef map0<> m;
-    
+
     MPL_ASSERT_RELATION( size<m>::type::value, ==, 0 );
     MPL_ASSERT(( empty<m>::type ));
 
@@ -177,20 +177,20 @@ MPL_TEST_CASE()
 {
     typedef map< mpl::pair<int,int*> > map_of_1_pair;
     typedef begin<map_of_1_pair>::type iter_to_1_pair;
-    
+
     BOOST_MPL_ASSERT((
         is_same<
              deref<iter_to_1_pair>::type
            , mpl::pair<int,int*>
         >
     ));
-    
+
     typedef map<
         mpl::pair<int,int*>
       , mpl::pair<long,long*>
       , mpl::pair<char,char*>
     > mymap;
-    
+
     test<mymap>();
     test<mymap::type>();
 }

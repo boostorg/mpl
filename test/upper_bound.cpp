@@ -17,7 +17,7 @@
 #include <boost/mpl/list_c.hpp>
 #include <boost/mpl/less.hpp>
 #include <boost/mpl/int.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

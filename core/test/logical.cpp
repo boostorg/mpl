@@ -13,7 +13,7 @@
 
 #include <boost/mpl/logical.hpp>
 #include <boost/mpl/bool.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 struct unknown;
 

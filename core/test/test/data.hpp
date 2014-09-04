@@ -1,6 +1,6 @@
 
-#ifndef BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED
-#define BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED
+#ifndef BOOST_MPL_TEST_TEST_DATA_HPP_INCLUDED
+#define BOOST_MPL_TEST_TEST_DATA_HPP_INCLUDED
 
 // Copyright Aleksey Gurtovoy 2002-2004
 //
@@ -22,4 +22,4 @@ struct incomplete;
 class abstract { public: virtual ~abstract() = 0; };
 using boost::noncopyable;
 
-#endif // BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED
+#endif // BOOST_MPL_TEST_TEST_DATA_HPP_INCLUDED

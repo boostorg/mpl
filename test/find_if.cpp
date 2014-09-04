@@ -16,10 +16,11 @@
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/distance.hpp>
 #include <boost/mpl/size.hpp>
-#include <boost/mpl/aux_/test.hpp>
 
 #include <boost/type_traits/is_float.hpp>
 #include <boost/type_traits/is_same.hpp>
+
+#include "test.hpp"
 
 typedef vector<int,char,long,short,char,long,double,float,char>::type types;
 typedef begin<types>::type first_;

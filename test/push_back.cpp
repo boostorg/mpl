@@ -13,9 +13,8 @@
 
 #include <boost/mpl/push_back.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
-
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 struct no_push_back_tag {};
 

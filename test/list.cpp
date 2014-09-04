@@ -18,9 +18,8 @@
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/empty.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
-
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 
 MPL_TEST_CASE()
@@ -48,11 +47,11 @@ MPL_TEST_CASE()
 MPL_TEST_CASE()
 {
     typedef list2<char,long> l2;
-    
+
     typedef begin<l2>::type i1;
     typedef next<i1>::type  i2;
     typedef next<i2>::type  i3;
-    
+
     MPL_ASSERT(( is_same<deref<i1>::type,char> ));
     MPL_ASSERT(( is_same<deref<i2>::type,long> ));
     MPL_ASSERT(( is_same< i3, end<l2>::type > ));

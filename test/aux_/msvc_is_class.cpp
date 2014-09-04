@@ -17,7 +17,7 @@
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1200)
 
 #include <boost/mpl/aux_/msvc_is_class.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 template< typename T > struct A { T x[0]; };
 
@@ -34,7 +34,7 @@ MPL_TEST_CASE()
     MPL_ASSERT_NOT(( aux::msvc_is_class< int[5] > ));
     MPL_ASSERT_NOT(( aux::msvc_is_class< void (*)() > ));
     MPL_ASSERT_NOT(( aux::msvc_is_class< int (*)(int, char) > ));
-    
+
     MPL_ASSERT(( aux::msvc_is_class< UDT > ));
     MPL_ASSERT(( aux::msvc_is_class< incomplete > ));
     MPL_ASSERT(( aux::msvc_is_class< abstract > ));

@@ -14,7 +14,7 @@
 #include <boost/mpl/empty.hpp>
 
 #include <boost/mpl/list/list10.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

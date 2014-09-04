@@ -11,6 +11,11 @@
 
 import testing ;
 
+project
+    : requirements
+        <include>../core/test
+    ;
+
 compile aux_/msvc_is_class.cpp ;
 compile aux_/template_arity.cpp ;
 compile aux_/preprocessor/is_seq.cpp ;

@@ -16,8 +16,8 @@
 #include <boost/mpl/find.hpp>
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/begin_end.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {
@@ -27,7 +27,7 @@ MPL_TEST_CASE()
     typedef find<types,double>::type iter2;
 
     typedef erase<types,iter1,iter2>::type result;
-    
+
     MPL_ASSERT_RELATION( size<result>::value, ==, 5 );
 
     typedef find<result,unsigned>::type iter;

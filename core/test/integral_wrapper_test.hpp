@@ -12,9 +12,9 @@
 // $Revision$
 
 #include <boost/mpl/next_prior.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
 #include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 #include <cassert>
 

@@ -14,7 +14,7 @@
 
 #include <boost/mpl/has_xxx.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 BOOST_MPL_HAS_XXX_TRAIT_DEF(xxx)
 BOOST_MPL_HAS_XXX_TEMPLATE_NAMED_DEF(has_xxx_template, xxx, false)

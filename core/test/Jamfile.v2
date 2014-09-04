@@ -11,6 +11,11 @@
 
 import testing ;
 
+project
+    : requirements
+        <include>.
+    ;
+
 compile aux_/largest_int.cpp ;
 
 compile arithmetic.cpp ;
