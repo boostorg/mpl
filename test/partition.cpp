@@ -19,7 +19,8 @@
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/modulus.hpp>
 #include <boost/mpl/int.hpp>
-#include <boost/mpl/aux_/test.hpp>
+
+#include "test.hpp"
 
 template< typename N > struct is_odd
     : modulus< N, int_<2> > 

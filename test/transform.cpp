@@ -19,12 +19,13 @@
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/equal_to.hpp>
 #include <boost/mpl/plus.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/mpl/aux_/config/gcc.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
 
+#include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/add_pointer.hpp>
 
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

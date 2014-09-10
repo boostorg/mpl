@@ -17,8 +17,9 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/size.hpp>
-#include <boost/mpl/aux_/test.hpp>
 
+#include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {
@@ -37,10 +38,10 @@ template< typename View > struct test_is_empty
 {
     typedef typename begin<View>::type first_;
     typedef typename end<View>::type last_;
-    
+
     MPL_ASSERT_RELATION( size<View>::value, ==, 0 );
     MPL_ASSERT(( is_same< first_,last_> ));
-    
+
     MPL_ASSERT_INSTANTIATION( View );
     MPL_ASSERT_INSTANTIATION( first_ );
     MPL_ASSERT_INSTANTIATION( last_ );

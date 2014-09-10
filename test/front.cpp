@@ -13,7 +13,7 @@
 
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/range_c.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 template< typename Seq, int value > struct front_test
 {

@@ -18,9 +18,11 @@
 #include <boost/mpl/next.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/apply_wrap.hpp>
-#include <boost/mpl/aux_/test.hpp>
 
 #include <boost/type_traits/is_float.hpp>
+#include <boost/type_traits/is_same.hpp>
+
+#include "test.hpp"
 
 namespace {
 
@@ -49,7 +51,7 @@ MPL_TEST_CASE() // basic argument binding
     typedef apply_wrap5< bind1<f1,_5>, void,void,void,void,int >::type r12;
     MPL_ASSERT(( boost::is_same<r11,int> ));
     MPL_ASSERT(( boost::is_same<r12,int> ));
-    
+
     typedef apply_wrap5< bind5<f5,_1,_2,_3,_4,_5>, void,void,void,void,int >::type r51;
     typedef apply_wrap5< bind5<f5,_5,_4,_3,_2,_1>, int,void,void,void,void >::type r52;
     MPL_ASSERT(( boost::is_same<r51,int> ));
@@ -82,7 +84,7 @@ MPL_TEST_CASE() // if_ evaluation
     typedef bind3< quote3<if_>, _1, bind1< quote1<next>, _2>, _3 > f;
     typedef apply_wrap3< f,true_,int_<0>,int >::type r1;
     typedef apply_wrap3< f,false_,int,int_<0> >::type r2;
-    
+
     MPL_ASSERT(( boost::is_same<r1,int_<1> > ));
     MPL_ASSERT(( boost::is_same<r2,int_<0> > ));
 }

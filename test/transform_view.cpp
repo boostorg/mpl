@@ -16,7 +16,7 @@
 #include <boost/mpl/max_element.hpp>
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/sizeof.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 
 MPL_TEST_CASE()

@@ -12,7 +12,7 @@
 // $Revision$
 
 #include <boost/mpl/aux_/template_arity.hpp>
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 #if defined(BOOST_EXTENDED_TEMPLATE_PARAMETERS_MATCHING)
 

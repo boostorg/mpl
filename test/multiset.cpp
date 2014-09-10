@@ -16,13 +16,14 @@
 
 #include <boost/mpl/insert.hpp>
 #include <boost/mpl/count.hpp>
-#include <boost/mpl/aux_/test.hpp>
 
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/find.hpp>
 
 #include <boost/config.hpp>
+#include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 /*
 struct test_data1
@@ -92,16 +93,16 @@ void find_test()
 
 MPL_TEST_CASE()
 {
-    // agurt 11/jun/06: multiset does not implement iterators yet!    
+    // agurt 11/jun/06: multiset does not implement iterators yet!
     // typedef insert<multiset0<>, int>::type set_of_1_int;
     // typedef begin<set_of_1_int>::type iter_to_1_int;
     // BOOST_MPL_ASSERT(( is_same< deref<iter_to_1_int>::type, int > ));
-    
+
     typedef multiset0<> s0;
     typedef insert<s0,int>::type s1;
     typedef insert<s1,long>::type s2;
     typedef insert<s2,char>::type myset;
-    
+
     // find_test<myset>();
     // find_test<myset::type>();
 }

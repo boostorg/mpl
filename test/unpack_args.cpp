@@ -14,8 +14,9 @@
 #include <boost/mpl/unpack_args.hpp>
 
 #include <boost/mpl/vector/vector10.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/type_traits/is_same.hpp>
+
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

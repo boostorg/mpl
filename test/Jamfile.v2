@@ -1,5 +1,21 @@
+#  Boost.MPL Library test Jamfile
+#
+#  Copyright (c) 2005 Vladimir Prus
+#  Copyright (c) 2006-2007 Dave Abrahams
+#  Copyright (c) 2009 Eric Niebler
+#  Copyright (c) 2009 Steven Watanabe
+#
+#  Distributed under the Boost Software License, Version 1.0.
+#  See accompanying file LICENSE_1_0.txt or copy at
+#  http://www.boost.org/LICENSE_1_0.txt
 
-compile aux_/largest_int.cpp ;
+import testing ;
+
+project
+    : requirements
+        <include>../core/test
+    ;
+
 compile aux_/msvc_is_class.cpp ;
 compile aux_/template_arity.cpp ;
 compile aux_/preprocessor/is_seq.cpp ;
@@ -9,15 +25,10 @@ compile advance.cpp ;
 compile always.cpp ;
 compile apply.cpp ;
 compile apply_wrap.cpp ;
-compile arithmetic.cpp ;
 compile as_sequence.cpp ;
-compile assert.cpp ;
 compile at.cpp ;
 compile back.cpp ;
 compile bind.cpp ;
-compile bitwise.cpp ;
-run bool.cpp ;
-compile comparison.cpp ;
 compile contains.cpp ;
 compile copy.cpp ;
 compile copy_if.cpp ;
@@ -29,23 +40,16 @@ compile empty.cpp ;
 compile equal.cpp ;
 compile erase.cpp ;
 compile erase_range.cpp ;
-compile eval_if.cpp ;
 compile filter_view.cpp ;
 compile find.cpp ;
 compile find_if.cpp ;
 compile fold.cpp ;
 run for_each.cpp ;
 compile front.cpp ;
-compile has_xxx.cpp ;
-compile identity.cpp ;
-compile if.cpp ;
 compile index_of.cpp ;
 compile inherit.cpp ;
 compile insert.cpp ;
 compile insert_range.cpp ;
-run int.cpp ;
-run char.cpp ;
-run integral_c.cpp : : : <toolset>vacpp:<cxxflags>-qchars=signed ;
 compile is_placeholder.cpp ;
 compile is_sequence.cpp ;
 compile iterator_tags.cpp ;
@@ -54,15 +58,11 @@ compile lambda.cpp ;
 compile lambda_args.cpp ;
 compile list.cpp ;
 compile list_c.cpp ;
-compile logical.cpp ;
 compile lower_bound.cpp ;
 compile map.cpp ;
 compile max_element.cpp ;
-compile min_max.cpp ;
 compile multiset.cpp ;
 compile next.cpp ;
-compile no_has_xxx.cpp ;
-compile numeric_ops.cpp ;
 compile pair_view.cpp ;
 compile partition.cpp ;
 compile pop_front.cpp ;
@@ -80,8 +80,6 @@ compile set.cpp ;
 compile set_c.cpp ;
 compile single_view.cpp ;
 compile size.cpp ;
-run size_t.cpp ;
-compile sizeof.cpp ;
 compile sort.cpp ;
 compile stable_partition.cpp ;
 compile transform.cpp ;

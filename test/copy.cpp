@@ -34,7 +34,7 @@
 #include <boost/mpl/pop_back_fwd.hpp>
 #include <boost/mpl/back_fwd.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

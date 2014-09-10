@@ -14,7 +14,7 @@
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/equal_to.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
+#include "test.hpp"
 
 MPL_TEST_CASE()
 {

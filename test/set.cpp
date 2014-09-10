@@ -29,8 +29,9 @@
 #include <boost/mpl/empty.hpp>
 #include <boost/mpl/begin_end.hpp>
 
-#include <boost/mpl/aux_/test.hpp>
+#include <boost/type_traits/is_same.hpp>
 
+#include "test.hpp"
 
 // Use templates for testing so that GCC will show us the actual types involved
 
@@ -39,7 +40,7 @@ void empty_set_test()
 {
     MPL_ASSERT_RELATION( size<s>::value, ==, 0 );
     MPL_ASSERT(( empty<s> ));
-    
+
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME clear<s>::type, set0<> > ));
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME at<s,int>::type, void_ > ));
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME at<s,char>::type, void_ > ));
@@ -55,7 +56,7 @@ void empty_set_test()
     MPL_ASSERT(( is_same< o1, void_ > ));
     MPL_ASSERT(( is_same< o2, void_ > ));
     MPL_ASSERT(( is_same< o3, void_ > ));
-    
+
     typedef BOOST_DEDUCED_TYPENAME begin<s>::type first;
     typedef BOOST_DEDUCED_TYPENAME end<s>::type last;
 
@@ -69,7 +70,7 @@ void int_set_test()
 {
     MPL_ASSERT_RELATION( size<s>::value, ==, 1 );
     MPL_ASSERT_NOT(( empty<s> ));
-    
+
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME clear<s>::type, set0<> > ));
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME at<s,int>::type, int > ));
     MPL_ASSERT(( is_same< BOOST_DEDUCED_TYPENAME at<s,char>::type, void_ > ));
@@ -85,7 +86,7 @@ void int_set_test()
     MPL_ASSERT_NOT(( is_same< o1, void_ > ));
     MPL_ASSERT(( is_same< o2, void_ > ));
     MPL_ASSERT(( is_same< o3, void_ > ));
-    
+
     typedef BOOST_DEDUCED_TYPENAME begin<s>::type first;
     typedef BOOST_DEDUCED_TYPENAME end<s>::type last;
 
@@ -185,7 +186,7 @@ void basic_set_test()
     int_set_test< BOOST_DEDUCED_TYPENAME erase_key< 
           BOOST_DEDUCED_TYPENAME erase_key<S3,char>::type
         , long
-        >::type >();    
+        >::type >();
 
     int_char_set_test<S2>();
     int_char_set_test< BOOST_DEDUCED_TYPENAME insert<
@@ -205,7 +206,7 @@ void basic_set_test()
         , int
         >::type >();
 
-    int_char_long_set_test< BOOST_DEDUCED_TYPENAME insert<          
+    int_char_long_set_test< BOOST_DEDUCED_TYPENAME insert<
           BOOST_DEDUCED_TYPENAME insert<S1,long>::type
         , char
         >::type >();

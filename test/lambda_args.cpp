@@ -13,9 +13,11 @@
 
 #include <boost/mpl/lambda.hpp>
 #include <boost/mpl/apply.hpp>
-#include <boost/mpl/aux_/test.hpp>
 #include <boost/mpl/aux_/config/gcc.hpp>
 #include <boost/mpl/aux_/config/workaround.hpp>
+
+#include <boost/type_traits/is_same.hpp>
+#include "test.hpp"
 
 typedef int UDT::* mem_ptr;
 typedef int (UDT::* mem_fun_ptr)();
