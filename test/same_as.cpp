@@ -12,8 +12,9 @@
 // $Revision$
 
 #include <boost/mpl/same_as.hpp>
+
 #include <boost/mpl/apply.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

@@ -18,15 +18,13 @@
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/integral_c.hpp>
 #include <boost/mpl/begin_end.hpp>
-
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {
     typedef list<int,char,long,short,char,long,double,long> types;
     typedef find<types,short>::type iter;
-
+    
     typedef erase<types, iter>::type result;
     MPL_ASSERT_RELATION( size<result>::value, ==, 7 );
 

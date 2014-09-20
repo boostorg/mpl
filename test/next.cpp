@@ -14,8 +14,7 @@
 #include <boost/mpl/next.hpp>
 #include <boost/mpl/prior.hpp>
 #include <boost/mpl/int.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

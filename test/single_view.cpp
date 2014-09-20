@@ -15,8 +15,7 @@
 #include <boost/mpl/advance.hpp>
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/begin_end.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

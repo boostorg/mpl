@@ -13,7 +13,7 @@
 
 #include <boost/mpl/as_sequence.hpp>
 #include <boost/mpl/vector.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

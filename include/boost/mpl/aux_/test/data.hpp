@@ -1,6 +1,6 @@
 
-#ifndef BOOST_MPL_TEST_TEST_TEST_CASE_HPP_INCLUDED
-#define BOOST_MPL_TEST_TEST_TEST_CASE_HPP_INCLUDED
+#ifndef BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED
+#define BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED
 
 // Copyright Aleksey Gurtovoy 2002-2004
 //
@@ -14,8 +14,12 @@
 // $Date$
 // $Revision$
 
-#include <boost/preprocessor/cat.hpp>
+#include <boost/noncopyable.hpp>
 
-#define MPL_TEST_CASE() void BOOST_PP_CAT(test,__LINE__)()
+enum enum_ {};
+struct UDT {};
+struct incomplete;
+class abstract { public: virtual ~abstract() = 0; };
+using boost::noncopyable;
 
-#endif // BOOST_MPL_TEST_TEST_TEST_CASE_HPP_INCLUDED
+#endif // BOOST_MPL_AUX_TEST_DATA_HPP_INCLUDED

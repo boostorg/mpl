@@ -12,7 +12,7 @@
 // $Revision$
 
 #include <boost/mpl/sizeof.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 struct my
 {

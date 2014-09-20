@@ -12,8 +12,8 @@
 // $Revision$
 
 #include <boost/mpl/aux_/largest_int.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
+
 
 MPL_TEST_CASE()
 {

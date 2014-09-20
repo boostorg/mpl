@@ -14,7 +14,7 @@
 #include <boost/mpl/iterator_tags.hpp>
 
 #include <boost/mpl/less.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

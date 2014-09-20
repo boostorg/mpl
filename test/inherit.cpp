@@ -12,8 +12,7 @@
 // $Revision$
 
 #include <boost/mpl/inherit.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 struct her { typedef her herself; };
 struct my { typedef my myself; };
@@ -25,10 +24,10 @@ MPL_TEST_CASE()
     typedef inherit<her,my>::type her_my1;
     MPL_ASSERT(( is_same<her_my1::herself, her> ));
     MPL_ASSERT(( is_same<her_my1::myself, my> ));
-
+    
     typedef inherit<empty_base,her>::type her1;
     MPL_ASSERT(( is_same<her1, her> ));
-
+    
     typedef inherit<empty_base,her,empty_base,empty_base>::type her2;
     MPL_ASSERT(( is_same<her2, her> ));
 

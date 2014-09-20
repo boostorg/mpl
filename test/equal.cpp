@@ -14,7 +14,7 @@
 #include <boost/mpl/equal.hpp>
 
 #include <boost/mpl/list.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {
@@ -22,7 +22,7 @@ MPL_TEST_CASE()
     typedef list<int,float,long,double,char,long,double,float> list2;
     typedef list<int,float,long,double,char,long,double,short> list3;
     typedef list<int,float,long,double,char,long,double> list4;
-
+    
     MPL_ASSERT(( equal<list1,list2> ));
     MPL_ASSERT(( equal<list2,list1> ));
     MPL_ASSERT_NOT(( equal<list2,list3> ));

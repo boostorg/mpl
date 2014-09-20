@@ -15,8 +15,7 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/front.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {
@@ -27,11 +26,11 @@ MPL_TEST_CASE()
     typedef pop_front<types1>::type result1;
     typedef pop_front<types2>::type result2;
     typedef pop_front<types3>::type result3;
-
+    
     MPL_ASSERT_RELATION( size<result1>::value, ==, 0 );
     MPL_ASSERT_RELATION( size<result2>::value, ==, 1 );
     MPL_ASSERT_RELATION( size<result3>::value, ==, 2 );
-
+    
     MPL_ASSERT(( is_same< front<result2>::type, long > ));
     MPL_ASSERT(( is_same< front<result3>::type, int > ));
 }

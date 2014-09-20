@@ -13,10 +13,10 @@
 
 #include <boost/mpl/contains.hpp>
 #include <boost/mpl/vector.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
-{
+{    
     typedef vector<int,char,long,short,char,long,double,long>::type types;
 
     MPL_ASSERT(( contains< types,short > ));

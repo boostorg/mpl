@@ -15,9 +15,7 @@
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/size.hpp>
 
-#include <boost/type_traits/is_same.hpp>
-
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 #if !BOOST_WORKAROUND(BOOST_MSVC, <=1200)
 MPL_TEST_CASE()

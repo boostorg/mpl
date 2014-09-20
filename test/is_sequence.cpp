@@ -16,7 +16,7 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/range_c.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 template< typename T > struct std_vector
 {

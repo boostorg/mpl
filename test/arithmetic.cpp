@@ -13,7 +13,7 @@
 
 #include <boost/mpl/arithmetic.hpp>
 #include <boost/mpl/int.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {

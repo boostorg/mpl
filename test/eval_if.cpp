@@ -14,8 +14,10 @@
 #include <boost/mpl/eval_if.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/identity.hpp>
+
+#include <boost/mpl/aux_/test.hpp>
+
 #include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
 
 MPL_TEST_CASE()
 {

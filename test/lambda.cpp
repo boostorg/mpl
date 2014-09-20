@@ -20,9 +20,10 @@
 #include <boost/mpl/sizeof.hpp>
 #include <boost/mpl/apply.hpp>
 
+#include <boost/mpl/aux_/test.hpp>
+
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/is_float.hpp>
-#include "test.hpp"
 
 struct my
 {
@@ -72,6 +73,6 @@ MPL_TEST_CASE()
     // bind <-> lambda interaction
     typedef lambda< less<_1,_2> >::type pred;
     typedef bind2< pred, _1, int_<4> > f;
-
+    
     MPL_ASSERT(( apply_wrap1< f,int_<3> > ));
 }

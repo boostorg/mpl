@@ -18,7 +18,7 @@
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/comparison.hpp>
 #include <boost/mpl/int.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 typedef vector_c<int,3,4,0,-5,8,-1,7>::type numbers;
 typedef vector_c<int,0,-5,-1>::type manual_first;

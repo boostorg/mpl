@@ -13,7 +13,7 @@
 
 #include <boost/mpl/comparison.hpp>
 #include <boost/mpl/int.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 // make sure MSVC behaves nicely in presence of the following template
 template< typename T > struct value {};

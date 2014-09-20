@@ -15,9 +15,7 @@
 #include <boost/mpl/lambda.hpp>
 #include <boost/mpl/plus.hpp>
 #include <boost/mpl/int.hpp>
-
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 
 template< typename T > struct std_vector

@@ -14,7 +14,7 @@
 
 #include <boost/mpl/bitwise.hpp>
 #include <boost/mpl/integral_c.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 typedef integral_c<unsigned int, 0> _0;
 typedef integral_c<unsigned int, 1> _1;

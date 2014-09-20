@@ -21,8 +21,8 @@
 #include <boost/mpl/size.hpp>
 #include <boost/mpl/empty.hpp>
 
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
+
 
 MPL_TEST_CASE()
 {
@@ -41,26 +41,26 @@ MPL_TEST_CASE()
     MPL_ASSERT_NOT(( empty<d2> ));
     MPL_ASSERT_NOT(( empty<d9> ));
 
-    MPL_ASSERT(( boost::is_same< front<d1>::type,char > ));
-    MPL_ASSERT(( boost::is_same< back<d1>::type,char > ));
-    MPL_ASSERT(( boost::is_same< front<d2>::type,char > ));
-    MPL_ASSERT(( boost::is_same< back<d2>::type,long > ));
-    MPL_ASSERT(( boost::is_same< front<d9>::type,char > ));
-    MPL_ASSERT(( boost::is_same< back<d9>::type,int > ));
+    MPL_ASSERT(( is_same< front<d1>::type,char > ));
+    MPL_ASSERT(( is_same< back<d1>::type,char > ));
+    MPL_ASSERT(( is_same< front<d2>::type,char > ));
+    MPL_ASSERT(( is_same< back<d2>::type,long > ));
+    MPL_ASSERT(( is_same< front<d9>::type,char > ));
+    MPL_ASSERT(( is_same< back<d9>::type,int > ));
 }
 
 
 MPL_TEST_CASE()
 {
     typedef deque<char,long> d2;
-
+    
     typedef begin<d2>::type i1;
     typedef next<i1>::type  i2;
     typedef next<i2>::type  i3;
-
-    MPL_ASSERT(( boost::is_same<deref<i1>::type,char> ));
-    MPL_ASSERT(( boost::is_same<deref<i2>::type,long> ));
-    MPL_ASSERT(( boost::is_same< i3, end<d2>::type > ));
+    
+    MPL_ASSERT(( is_same<deref<i1>::type,char> ));
+    MPL_ASSERT(( is_same<deref<i2>::type,long> ));
+    MPL_ASSERT(( is_same< i3, end<d2>::type > ));
 }
 
 MPL_TEST_CASE()
@@ -68,14 +68,14 @@ MPL_TEST_CASE()
     typedef deque<> d0;
 
     typedef push_back<d0,int>::type d1;
-    MPL_ASSERT(( boost::is_same< back<d1>::type,int > ));
+    MPL_ASSERT(( is_same< back<d1>::type,int > ));
 
     typedef push_front<d1,char>::type d2;
-    MPL_ASSERT(( boost::is_same< back<d2>::type,int > ));
-    MPL_ASSERT(( boost::is_same< front<d2>::type,char > ));
+    MPL_ASSERT(( is_same< back<d2>::type,int > ));
+    MPL_ASSERT(( is_same< front<d2>::type,char > ));
 
     typedef push_back<d2,long>::type d3;
-    MPL_ASSERT(( boost::is_same< back<d3>::type,long > ));
+    MPL_ASSERT(( is_same< back<d3>::type,long > ));
 }
 
 MPL_TEST_CASE()

@@ -18,10 +18,10 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/sizeof.hpp>
 #include <boost/mpl/deref.hpp>
+#include <boost/mpl/aux_/test.hpp>
 
 #include <boost/type_traits/is_float.hpp>
 #include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
 
 MPL_TEST_CASE()
 {

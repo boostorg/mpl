@@ -17,17 +17,16 @@
 #include <boost/mpl/distance.hpp>
 #include <boost/mpl/begin_end.hpp>
 #include <boost/mpl/int.hpp>
-#include <boost/type_traits/is_same.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
-{
+{    
     typedef list<int,char,long,short,char,long,double,long>::type types;
     typedef list_c<int,1,0,5,1,7,5,0,5> values;
 
     typedef find<types, short>::type types_iter;
     typedef find< values, integral_c<int,7> >::type values_iter;
-
+   
     MPL_ASSERT(( is_same< deref<types_iter>::type, short> ));
     MPL_ASSERT_RELATION( deref<values_iter>::type::value, ==, 7 );
 

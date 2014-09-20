@@ -16,7 +16,7 @@
 #include <boost/mpl/vector/vector10.hpp>
 #include <boost/mpl/equal.hpp>
 
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 
 MPL_TEST_CASE()

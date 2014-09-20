@@ -13,12 +13,12 @@
 
 #include <boost/mpl/is_placeholder.hpp>
 #include <boost/mpl/placeholders.hpp>
+#include <boost/mpl/aux_/test.hpp>
+
 #include <boost/preprocessor/repeat.hpp>
 #include <boost/preprocessor/inc.hpp>
 #include <boost/preprocessor/cat.hpp>
-
-#include "test.hpp"
-
+    
 #define AUX_IS_PLACEHOLDER_TEST(unused1, n, unused2) \
     { MPL_ASSERT(( is_placeholder< \
           BOOST_PP_CAT(_,BOOST_PP_INC(n)) \
@@ -33,7 +33,7 @@ MPL_TEST_CASE()
     MPL_ASSERT_NOT(( is_placeholder<abstract> ));
     MPL_ASSERT_NOT(( is_placeholder<noncopyable> ));
     MPL_ASSERT(( is_placeholder<_> ));
-
+    
     BOOST_PP_REPEAT(
           BOOST_MPL_LIMIT_METAFUNCTION_ARITY
         , AUX_IS_PLACEHOLDER_TEST

@@ -15,7 +15,7 @@
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/range_c.hpp>
 
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 
 MPL_TEST_CASE()
@@ -23,7 +23,7 @@ MPL_TEST_CASE()
     typedef list<char,short,int,long>::type list;
     typedef begin<list>::type first;
     typedef end<list>::type last;
-
+    
     MPL_ASSERT_RELATION( (mpl::distance<first,last>::value), ==, 4 );
 }
 
@@ -32,6 +32,6 @@ MPL_TEST_CASE()
     typedef range_c<int,0,10>::type range;
     typedef begin<range>::type first;
     typedef end<range>::type last;
-
+    
     MPL_ASSERT_RELATION( (mpl::distance<first,last>::value), ==, 10 );
 }

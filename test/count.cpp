@@ -16,7 +16,7 @@
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/vector_c.hpp>
 #include <boost/mpl/integral_c.hpp>
-#include "test.hpp"
+#include <boost/mpl/aux_/test.hpp>
 
 MPL_TEST_CASE()
 {
@@ -28,7 +28,7 @@ MPL_TEST_CASE()
     MPL_ASSERT_RELATION( (count<types,long>::value), ==, 3 );
     MPL_ASSERT_RELATION( (count<types,unsigned>::value), ==, 0 );
 }
-
+    
 MPL_TEST_CASE()
 {
     typedef vector_c<int,1,0,5,1,7,5,0,5> values;
