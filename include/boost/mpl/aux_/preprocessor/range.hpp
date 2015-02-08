@@ -15,9 +15,23 @@
 // $Revision$
 
 #include <boost/preprocessor/seq/subseq.hpp>
+#include <boost/preprocessor/tuple/to_seq.hpp>
+#include <boost/preprocessor/arithmetic/add.hpp>
+#include <boost/preprocessor/punctuation.hpp>
+#include <boost/preprocessor/enum_params.hpp>
+#include <boost/preprocessor/empty.hpp>
 
+#undef BOOST_MPL_PP_RANGE
 #define BOOST_MPL_PP_RANGE(first, length) \
-    BOOST_PP_SEQ_SUBSEQ((0)(1)(2)(3)(4)(5)(6)(7)(8)(9), first, length) \
+    BOOST_PP_SEQ_SUBSEQ( \
+        BOOST_PP_TUPLE_TO_SEQ( \
+                BOOST_PP_ADD(first, length), \
+                BOOST_PP_LPAREN() \
+                BOOST_PP_ENUM_PARAMS(BOOST_PP_ADD(first, length), BOOST_PP_EMPTY()) \
+                BOOST_PP_RPAREN() \
+        ), \
+        first, length \
+    ) \
 /**/
 
 #endif // BOOST_MPL_AUX_PREPROCESSOR_RANGE_HPP_INCLUDED
