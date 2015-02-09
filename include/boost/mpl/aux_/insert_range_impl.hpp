@@ -44,7 +44,7 @@ struct insert_range_impl
         >
     struct apply
 #if !defined(BOOST_MPL_CFG_NO_NESTED_FORWARDING)
-        : fold<
+        : reverse_fold<
               joint_view<
                   iterator_range<typename begin<Sequence>::type,Pos>
                 , joint_view<
@@ -53,12 +53,12 @@ struct insert_range_impl
                     >
                 >
             , typename clear<Sequence>::type
-            , insert<_1, end<_1>, _2>
+            , insert<_1, begin<_1>, _2>
             >
     {
 #else
     {
-        typedef typename fold<
+        typedef typename reverse_fold<
                 joint_view<
                     iterator_range<typename begin<Sequence>::type,Pos>
                   , joint_view<
@@ -67,7 +67,7 @@ struct insert_range_impl
                       >
                   >
               , typename clear<Sequence>::type
-              , insert<_1, end<_1>, _2>
+              , insert<_1, begin<_1>, _2>
               >::type type;
 #endif
     };
