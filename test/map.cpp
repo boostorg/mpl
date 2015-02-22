@@ -223,7 +223,7 @@ MPL_TEST_CASE()
     typedef insert< map<>, pair<int,int> >::type little_map;
 
     MPL_ASSERT_RELATION(size<little_map>::value, ==, 1);
-//    MPL_ASSERT_RELATION(size<little_map::type>::value, ==, 1); /*** FAILURE - BUGS 7975/8749 */
+    MPL_ASSERT_RELATION(size<little_map::type>::value, ==, 1);
 }
 
 MPL_TEST_CASE()
@@ -231,5 +231,5 @@ MPL_TEST_CASE()
     typedef erase_key< map< pair<float,float>, pair<int,int> >, float >::type little_map;
 
     MPL_ASSERT_RELATION(size<little_map>::value, ==, 1);
-//    MPL_ASSERT_RELATION(size<little_map::type>::value, ==, 1); /*** FAILURE - BUGS 7975/8749 */
+    MPL_ASSERT_RELATION(size<little_map::type>::value, ==, 1);
 }

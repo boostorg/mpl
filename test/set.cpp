@@ -335,7 +335,7 @@ MPL_TEST_CASE()
     typedef insert< set<>, int >::type little_set;
 
     MPL_ASSERT_RELATION(size<little_set>::value, ==, 1);
-//    MPL_ASSERT_RELATION(size<little_set::type>::value, ==, 1); /*** FAILURE - BUGS 7975/8749 */
+    MPL_ASSERT_RELATION(size<little_set::type>::value, ==, 1);
 }
 
 MPL_TEST_CASE()
@@ -343,5 +343,5 @@ MPL_TEST_CASE()
     typedef erase_key< set< float, int >, float >::type little_set;
 
     MPL_ASSERT_RELATION(size<little_set>::value, ==, 1);
-//    MPL_ASSERT_RELATION(size<little_set::type>::value, ==, 1); /*** FAILURE - BUGS 7975/8749 */
+    MPL_ASSERT_RELATION(size<little_set::type>::value, ==, 1);
 }
