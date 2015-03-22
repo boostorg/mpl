@@ -20,31 +20,31 @@
 
 #include <boost/mpl/aux_/test.hpp>
 
-#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/inc.hpp>
 #include <boost/preprocessor/repeat_from_to.hpp>
 #include <boost/preprocessor/enum_params.hpp>
-#include <boost/preprocessor/enum_shifted_params.hpp>
 #include <boost/preprocessor/facilities/intercept.hpp>
 
 #define TEST_N_ARY(unused1, N, unused2) \
-    struct BOOST_PP_CAT(_, BOOST_PP_CAT(N, _ary)) \
-    { \
-        MPL_ASSERT(( \
-                apply< \
-                    and_<BOOST_PP_ENUM_SHIFTED_PARAMS(BOOST_PP_INC(N), _)>, \
-                    BOOST_PP_ENUM_PARAMS(N, true_ BOOST_PP_INTERCEPT) \
-                > \
-            )); \
-    }; \
+    static_assert_< \
+        apply< \
+            and_<BOOST_PP_ENUM_PARAMS(N, _ BOOST_PP_INTERCEPT)>, \
+            BOOST_PP_ENUM_PARAMS(N, true_ BOOST_PP_INTERCEPT) \
+        > \
+    >(); \
 /**/
+
+template<typename assertion>
+void static_assert_(){
+    MPL_ASSERT((typename assertion::type));
+}
 
 MPL_TEST_CASE()
 {
     BOOST_PP_REPEAT_FROM_TO(
-            2,
-            BOOST_PP_INC(BOOST_MPL_LIMIT_METAFUNCTION_ARITY),
-            TEST_N_ARY,
-            _
-        )
+        2,
+        BOOST_PP_INC(BOOST_MPL_LIMIT_METAFUNCTION_ARITY),
+        TEST_N_ARY,
+        _
+    )
 }
