@@ -19,6 +19,7 @@
 #include <boost/mpl/aux_/config/workaround.hpp>
 #include <boost/mpl/aux_/lambda_support.hpp>
 
+#include <boost/type_traits/integral_constant.hpp>
 #include <boost/type_traits/is_empty.hpp>
 
 namespace boost { namespace mpl {
