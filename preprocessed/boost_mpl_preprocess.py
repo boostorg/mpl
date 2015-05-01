@@ -8,6 +8,7 @@
 # See http://stackoverflow.com/a/20660264/3115457 for further information.
 # See http://stackoverflow.com/a/29627158/3115457 for further information.
 
+import fix_boost_mpl_preprocess as fixmpl
 import argparse
 import sys
 import os
@@ -164,8 +165,19 @@ def main():
     if args.want_map:
         containers.append('map')
     if containers == []:
-        print "Nothing to do. (Why did you prevent generating pre-processed headers for all Boost.MPL container types?"
+        print "Nothing to do."
+        print "(Why did you prevent generating pre-processed headers for all Boost.MPL container types?)"
         sys.exit(0)
+
+    # Possibly fix the header-comments of input-files needed for pre-processing.
+    if args.verbose:
+        print "Checking if prior to pre-processing some input-files need fixing."
+    needFixing = fixmpl.check_input_files(headerDir, sourceDir, containers, args.seqType, args.verbose)
+    if needFixing:
+        if args.verbose:
+            print "Fixing of some input-files prior to pre-processing is needed."
+            print "Will fix them now!"
+        fixmpl.fix_input_files(headerDir, sourceDir, containers, args.seqType, args.verbose)
 
     # Some verbose debug output.
     if args.verbose:

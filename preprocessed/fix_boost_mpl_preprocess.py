@@ -16,6 +16,79 @@ import datetime
 import glob
 
 
+def check_header_comment(filename):
+    """Checks if the header-comment of the given file needs fixing."""
+    # Check input file.
+    name = os.path.basename( filename )
+    # Read content of input file.
+    sourcefile = open( filename, "rU" )
+    content = sourcefile.read()
+    sourcefile.close()
+    # Search content for '$Id$'.
+    match = re.search(r'\$Id\$', content)
+    if match == None:
+        # Make sure that the correct value for '$Id$' was already set.
+        match = re.search(r'\$Id: ' + name + r'\s+[^$]+\$', content)
+        if match != None:
+            # The given file needs no fixing.
+            return False
+    # The given file needs fixing.
+    return True
+
+
+def check_input_files_for_variadic_seq(headerDir, sourceDir):
+    """Checks if files, used as input when pre-processing MPL-containers in their variadic form, need fixing."""
+    # Check input files in include/source-directories.
+    files  = glob.glob( os.path.join( headerDir, "*.hpp" ) )
+    files += glob.glob( os.path.join( headerDir, "aux_", "*.hpp" ) )
+    files += glob.glob( os.path.join( sourceDir, "src", "*" ) )
+    for currentFile in sorted( files ):
+        if check_header_comment( currentFile ):
+            return True
+    return False
+
+
+def check_input_files_for_numbered_seq(sourceDir, suffix, containers):
+    """Check if files, used as input when pre-processing MPL-containers in their numbered form, need fixing."""
+    # Check input files for each MPL-container type.
+    for container in containers:
+        files = glob.glob( os.path.join( sourceDir, container, container + '*' + suffix ) )
+        for currentFile in sorted( files ):
+            if check_header_comment( currentFile ):
+                return True
+    return False
+
+
+def check_input_files(headerDir, sourceDir, containers=['vector', 'list', 'set', 'map'],
+                      seqType='both', verbose=False):
+    """Checks if source- and header-files, used as input when pre-processing MPL-containers, need fixing."""
+    # Check the input files for containers in their variadic form.
+    result1 = False
+    if seqType == "both" or seqType == "variadic":
+        if verbose:
+            print "Check if input files for pre-processing Boost.MPL variadic containers need fixing."
+        result1 = check_input_files_for_variadic_seq(headerDir, sourceDir)
+        if verbose:
+            if result1:
+                print "  At least one input file needs fixing!"
+            else:
+                print "  No input file needs fixing!"
+    # Check the input files for containers in their numbered form.
+    result2 = False
+    result3 = False
+    if seqType == "both" or seqType == "numbered":
+        if verbose:
+            print "Check input files for pre-processing Boost.MPL numbered containers."
+        result2 = check_input_files_for_numbered_seq(headerDir, ".hpp", containers)
+        result3 = check_input_files_for_numbered_seq(sourceDir, ".cpp", containers)
+        if verbose:
+            if result2 or result3:
+                print "  At least one input file needs fixing!"
+            else:
+                print "  No input file needs fixing!"
+    # Return result.
+    return result1 or result2 or result3
+
 def fix_header_comment(filename, timestamp):
     """Fixes the header-comment of the given file."""
     # Fix input file.
@@ -47,18 +120,22 @@ def fix_input_files_for_numbered_seq(sourceDir, suffix, timestamp, containers):
             fix_header_comment( currentFile, timestamp )
 
 
-def fix_input_files(headerDir, sourceDir, containers=['vector', 'list', 'set', 'map'], verbose='false'):
+def fix_input_files(headerDir, sourceDir, containers=['vector', 'list', 'set', 'map'],
+                    seqType='both', verbose=False):
     """Fixes source- and header-files used as input when pre-processing MPL-containers."""
     # The new modification time.
     timestamp = datetime.datetime.now();
-    # Fix the input files.
-    if verbose:
-        print "Fix input files for pre-processing Boost.MPL variadic containers."
-    fix_input_files_for_variadic_seq(headerDir, sourceDir, timestamp)
-    if verbose:
-        print "Fix input files for pre-processing Boost.MPL numbered containers."
-    fix_input_files_for_numbered_seq(headerDir, ".hpp", timestamp, containers)
-    fix_input_files_for_numbered_seq(sourceDir, ".cpp", timestamp, containers)
+    # Fix the input files for containers in their variadic form.
+    if seqType == "both" or seqType == "variadic":
+        if verbose:
+            print "Fix input files for pre-processing Boost.MPL variadic containers."
+        fix_input_files_for_variadic_seq(headerDir, sourceDir, timestamp)
+    # Fix the input files for containers in their numbered form.
+    if seqType == "both" or seqType == "numbered":
+        if verbose:
+            print "Fix input files for pre-processing Boost.MPL numbered containers."
+        fix_input_files_for_numbered_seq(headerDir, ".hpp", timestamp, containers)
+        fix_input_files_for_numbered_seq(sourceDir, ".cpp", timestamp, containers)
 
 
 def to_existing_absolute_path(string):
@@ -78,6 +155,8 @@ def main():
                     description="Fixes the input files used for pre-processing of Boost.MPL headers.")
     cmdlineParser.add_argument("-v", "--verbose", dest='verbose', action='store_true',
                                help="Be a little bit more verbose.")
+    cmdlineParser.add_argument("--check-only", dest='checkonly', action='store_true',
+                               help="Only checks if fixing is required.")
     cmdlineParser.add_argument(dest='sourceDir', metavar="<source-dir>",
                                type=to_existing_absolute_path,
                                help="The source-directory of Boost.")
@@ -87,6 +166,7 @@ def main():
     if args.verbose:
         print "Arguments extracted from command-line:"
         print "  verbose           = ", args.verbose
+        print "  check-only        = ", args.checkonly
         print "  source directory  = ", args.sourceDir
 
     # The directories for header- and source files of Boost.MPL.    
@@ -109,8 +189,16 @@ def main():
         print "Chosen header-directory: ", headerDir
         print "Chosen source-directory: ", sourceDir
 
-    # Fix input file for generating pre-processed headers.
-    fix_input_files(headerDir, sourceDir, verbose = args.verbose)
+    if args.checkonly:
+        # Check input files for generating pre-processed headers.
+        result = check_input_files(headerDir, sourceDir, verbose = args.verbose)
+        if result:
+            print "Fixing the input-files used for pre-processing of Boost.MPL headers IS required."
+        else:
+            print "Fixing the input-files used for pre-processing of Boost.MPL headers is NOT required."
+    else:
+        # Fix input files for generating pre-processed headers.
+        fix_input_files(headerDir, sourceDir, verbose = args.verbose)
 
 
 if __name__ == '__main__':

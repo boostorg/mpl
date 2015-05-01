@@ -26,19 +26,36 @@ Fixing pre-processing of MPL-containers
 Sadly, pre-processing of MPL-containers might fail, if the source-files
 used as input are missing some header-comments required during the pre-
 processing step.
-In such a case call the script "fix_boost_mpl_preprocess.py" like this:
+However, the script "boost_mpl_preprocess.py" makes sure to patch these
+input source-files prior to pre-processing (by implicitly calling script
+"fix_boost_mpl_preprocess.py" with the chosen settings). It only patches
+the source-files needed for pre-processing the selected MPL-container
+types and their selected form ('numbered' or 'variadic').
+If calling it with a single argument (as in the former section) all input
+source-files will be patched automatically.
+
+Instead of fixing the input-files implicitly during pre-processing one
+can also fix them explicitly by calling "fix_boost_mpl_preprocess.py"
+directly.
+If you just want to test if any fixing is needed call it like this:
+
+  python fix_boost_mpl_preprocess.py --check-only <path-to-boost-sourcedir>
+
+This will tell you if any fixing is needed. In such a case call the script
+"fix_boost_mpl_preprocess.py" like this:
 
   python fix_boost_mpl_preprocess.py <path-to-boost-sourcedir>
 
 This will fix the header-comments of all the source-files needed during
 pre-processing. Calling "boost_mpl_preprocess.py" afterwards should then
-successfully pre-process the MPL-containers.
+successfully pre-process the MPL-containers (without the need of implicitly
+fixing any files again).
 
 Note:
-If pre-processing failed can be checked by examining at least one of the
+Failure of pre-processing can be checked by examining at least one of the
 following directories in which automatically generated files will be put
 during pre-processing. If at least one file in these directories (or sub-
-directories therein) has a size of zero bytes, the fix is needed.
+directories therein) has a size of zero bytes, fixing is needed.
 
  <path-to-boost-sourcedir>/boost/mpl/vector/aux_/preprocessed/
  <path-to-boost-sourcedir>/boost/mpl/list/aux_/preprocessed/
