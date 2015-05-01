@@ -31,7 +31,7 @@ def create_more_container_files(sourceDir, suffix, maxElements, containers, cont
             for line in fileinput.input( newFile, inplace=1, mode="rU" ):
                 line = re.sub(r'20', re.escape(str(i+10)), line.rstrip())
                 line = re.sub(r'11', re.escape(str(i + 1)), line.rstrip())
-                line = re.sub(r'10', re.escape(str(i)), line.rstrip())
+                line = re.sub(r'10(?![0-9])', re.escape(str(i)), line.rstrip())
                 print(line)
     for container in containers2:
         for i in range(20, maxElements, 10):
@@ -42,7 +42,7 @@ def create_more_container_files(sourceDir, suffix, maxElements, containers, cont
             for line in fileinput.input( newFile, inplace=1, mode="rU" ):
                 line = re.sub(r'20', re.escape(str(i+10)), line.rstrip())
                 line = re.sub(r'11', re.escape(str(i + 1)), line.rstrip())
-                line = re.sub(r'10', re.escape(str(i)), line.rstrip())
+                line = re.sub(r'10(?![0-9])', re.escape(str(i)), line.rstrip())
                 print(line)
 
 

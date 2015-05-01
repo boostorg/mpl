@@ -28,9 +28,12 @@ def fix_header_comment(filename, timestamp):
         print(line)
 
 
-def fix_input_files_for_variadic_seq(sourceDir, timestamp):
+def fix_input_files_for_variadic_seq(headerDir, sourceDir, timestamp):
     """Fixes files used as input when pre-processing MPL-containers in their variadic form."""
-    files = glob.glob( os.path.join( sourceDir, "src", "*" ) )
+    # Fix files in include/source-directories.
+    files  = glob.glob( os.path.join( headerDir, "*.hpp" ) )
+    files += glob.glob( os.path.join( headerDir, "aux_", "*.hpp" ) )
+    files += glob.glob( os.path.join( sourceDir, "src", "*" ) )
     for currentFile in sorted( files ):
         fix_header_comment( currentFile, timestamp )
 
@@ -51,7 +54,7 @@ def fix_input_files(headerDir, sourceDir, containers=['vector', 'list', 'set', '
     # Fix the input files.
     if verbose:
         print "Fix input files for pre-processing Boost.MPL variadic containers."
-    fix_input_files_for_variadic_seq(sourceDir, timestamp)
+    fix_input_files_for_variadic_seq(headerDir, sourceDir, timestamp)
     if verbose:
         print "Fix input files for pre-processing Boost.MPL numbered containers."
     fix_input_files_for_numbered_seq(headerDir, ".hpp", timestamp, containers)
