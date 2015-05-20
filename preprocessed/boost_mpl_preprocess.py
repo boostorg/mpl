@@ -72,6 +72,21 @@ def adjust_container_limits_for_variadic_sequences(headerDir, containers, maxEle
             print(line)
 
 
+def current_boost_dir():
+    """Returns the (relative) path to the Boost source-directory this file is located in (if any)."""
+    # Path to directory containing this script.
+    path = os.path.dirname( os.path.realpath(__file__) )
+    # Making sure it is located in "${boost-dir}/libs/mpl/preprocessed".
+    for directory in reversed( ["libs", "mpl", "preprocessed"] ):
+        (head, tail) = os.path.split(path)
+        if tail == directory:
+            path = head
+        else:
+            return None
+    return os.path.relpath( path )
+    
+
+
 def to_positive_multiple_of_10(string):
     """Converts a string into its encoded positive integer (greater zero) or throws an exception."""
     try:
@@ -96,7 +111,12 @@ def to_existing_absolute_path(string):
 
 def main():
     """The main function."""
-
+    
+    # Find the current Boost source-directory in which this script is located.
+    sourceDir = current_boost_dir()
+    if sourceDir == None:
+        sourceDir = ""
+    
     # Prepare and run cmdline-parser.
     cmdlineParser = argparse.ArgumentParser(description="A generator-script for pre-processed Boost.MPL headers.")
     cmdlineParser.add_argument("-v", "--verbose", dest='verbose', action='store_true',
@@ -117,9 +137,9 @@ def main():
     cmdlineParser.add_argument("--num-elements", dest='numElements', metavar="<num-elements>",
                                type=to_positive_multiple_of_10, default=100,
                                help="The maximal number of elements per container sequence. (Default=100)")
-    cmdlineParser.add_argument(dest='sourceDir', metavar="<source-dir>",
+    cmdlineParser.add_argument(dest='sourceDir', metavar="<source-dir>", default=current_boost_dir(), nargs='?',
                                type=to_existing_absolute_path,
-                               help="The source-directory of Boost.")
+                               help="The source-directory of Boost. (Default=\"" + sourceDir + "\")")
     args = cmdlineParser.parse_args()
 
     # Some verbose debug output.
@@ -134,7 +154,12 @@ def main():
         print "  want: set        = ", args.want_set
         print "  want: map        = ", args.want_map
 
-    # The directories for header- and source files of Boost.MPL.    
+    # Verify that we received any source-directory.
+    if args.sourceDir == None:
+        print "You should specify a valid path to the Boost source-directory."
+        sys.exit(0)
+
+    # The directories for header- and source files of Boost.MPL.
     # NOTE: Assuming 'args.sourceDir' is the source-directory of the entire boost project.
     headerDir = os.path.join( args.sourceDir, "boost", "mpl" )
     sourceDir = os.path.join( args.sourceDir, "libs", "mpl", "preprocessed" )

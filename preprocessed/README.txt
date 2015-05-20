@@ -2,14 +2,19 @@ Pre-processing of MPL-containers
 --------------------------------
 
 Pre-processing of MPL-containers can be accomplished using the script
-"boost_mpl_preprocess.py". In the simplest case call it with a single
+"boost_mpl_preprocess.py". In the simple case call it with a single
 argument which is the path to the source-directory of Boost.
 
   python boost_mpl_preprocess.py <path-to-boost-sourcedir>
 
-This will pre-process all four MPL-container types (vector, list, set,
-map) and makes them able to hold up to 100 elements. They can be used
-either in their 'numbered' or their 'variadic' form.
+If the Boost source-directory is the one this script resides in, you
+can just call it without any arguments.
+
+  python boost_mpl_preprocess.py
+
+Either way, this will pre-process all four MPL-container types (vector,
+list, set, map) and makes them able to hold up to 100 elements. They can
+be used either in their 'numbered' or their 'variadic' form.
 
 Additionally, the script also allows more fine-grained pre-processing.
 The maximal number of elements an MPL-container type is able to hold can
@@ -31,8 +36,8 @@ input source-files prior to pre-processing (by implicitly calling script
 "fix_boost_mpl_preprocess.py" with the chosen settings). It only patches
 the source-files needed for pre-processing the selected MPL-container
 types and their selected form ('numbered' or 'variadic').
-If calling it with a single argument (as in the former section) all input
-source-files will be patched automatically.
+If calling it with a single (or no) argument (as in the former section)
+all input source-files will be patched automatically.
 
 Instead of fixing the input-files implicitly during pre-processing one
 can also fix them explicitly by calling "fix_boost_mpl_preprocess.py"
