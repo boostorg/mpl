@@ -37,6 +37,7 @@ compile find_if.cpp ;
 compile fold.cpp ;
 run for_each.cpp ;
 compile front.cpp ;
+compile get_tag_def.cpp ;
 compile has_xxx.cpp ;
 compile identity.cpp ;
 compile if.cpp ;
