@@ -31,3 +31,5 @@ AUX_ASSERT_IS_SEQ( (a) )
 AUX_ASSERT_IS_SEQ( (a)(b) )
 AUX_ASSERT_IS_SEQ( (a)(b)(c) )
 AUX_ASSERT_IS_SEQ( SEQ )
+
+int main() { }
