@@ -35,7 +35,7 @@ common functionality documented by the |Reversible Algorithm|
 concept.
 
 
-.. |Output Iterator| replace:: `Output Iterator <http://www.sgi.com/tech/stl/OutputIterator.html>`__
+.. |Output Iterator| replace:: `Output Iterator <https://boost.org/sgi/stl/OutputIterator.html>`__
 .. |sequence algorithms| replace:: `sequence algorithms`_
 .. _`sequence algorithms`: `Algorithms`_
 
