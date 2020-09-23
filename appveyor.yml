@@ -45,6 +45,19 @@ environment:
     B2_VARIANT: variant=release,debug
 
   matrix:
+    - FLAVOR: Visual Studio 2019 All Modes
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      TOOLSET: msvc-14.2
+      B2_ADDRESS_MODEL: address-model=64,32
+      CXXSTD: 14,17,latest
+
+    - FLAVOR: Visual Studio 2019 New Preprocessor
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+      TOOLSET: msvc-14.2
+      B2_ADDRESS_MODEL: address-model=64,32
+      CXXFLAGS: cxxflags="/Zc:preprocessor"
+      CXXSTD: 14,17,latest
+
     - FLAVOR: Visual Studio 2017 C++2a Strict
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       TOOLSET: msvc-14.1
