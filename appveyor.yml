@@ -83,7 +83,7 @@ environment:
 
     - FLAVOR: Visual Studio 2010, 2012, 2013
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      TOOLSET: msvc-10.0,msvc-11.0,msvc-12.0
+      TOOLSET: msvc-12.0
 
     - FLAVOR: cygwin (32-bit)
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
