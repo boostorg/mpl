@@ -45,7 +45,7 @@ environment:
     B2_VARIANT: variant=release,debug
 
   matrix:
-    - FLAVOR: Visual Studio 2019 All Modes
+    - FLAVOR: Visual Studio 2019
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       TOOLSET: msvc-14.2
       B2_ADDRESS_MODEL: address-model=64,32
@@ -76,15 +76,25 @@ environment:
       TOOLSET: msvc-14.1
       B2_ADDRESS_MODEL: address-model=64,32
 
-    - FLAVOR: Visual Studio 2015 C++14 (Default)
+    - FLAVOR: Visual Studio 2015
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-14.0
       B2_ADDRESS_MODEL: address-model=64,32
 
-    - FLAVOR: Visual Studio 2012
+    - FLAVOR: Visual Studio 2013
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       TOOLSET: msvc-12.0
       B2_ADDRESS_MODEL: address-model=64,32
+
+    - FLAVOR: Visual Studio 2012
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      TOOLSET: msvc-11.0
+      B2_ADDRESS_MODEL: address-model=32
+
+    - FLAVOR: Visual Studio 2010
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      TOOLSET: msvc-10.0
+      B2_ADDRESS_MODEL: address-model=32
 
     - FLAVOR: cygwin (32-bit)
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
