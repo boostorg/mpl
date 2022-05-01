@@ -94,8 +94,9 @@ jobs:
               compiler: clang-10,  cxxstd: '17',             os: ubuntu-20.04, ccache: no }
 
           # multiarch (bigendian testing) - does not support coverage yet
-          - { name: Big-endian, multiarch: yes,
-              compiler: clang,     cxxstd: '17',             os: ubuntu-20.04, ccache: no, distro: fedora, edition: 34, arch: s390x }
+          # Please uncomment when fixing https://github.com/boostorg/mpl/issues/50
+          # - { name: Big-endian, multiarch: yes,
+          #     compiler: clang,     cxxstd: '17',             os: ubuntu-20.04, ccache: no, distro: fedora, edition: 34, arch: s390x }
 
 
     timeout-minutes: 120
