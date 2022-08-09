@@ -72,11 +72,11 @@ struct AUX_WRAPPER_NAME
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value + 1)) ) next;
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value - 1)) ) prior;
 #else
-    template<decltype(n-1) n_minus_1 = n-1>
+    template<decltype(N-1) n_minus_1 = N-1>
     struct prior_impl : integral_wrapper<T, static_cast<T>(n_minus_1)> {};
     typedef prior_impl<> prior;
 
-    template<decltype(n+1) n_plus_1 = n+1>
+    template<decltype(N+1) n_plus_1 = N+1>
     struct next_impl : integral_wrapper<T, static_cast<T>(n_plus_1)> {};
     typedef next_impl<> next;
 #endif
