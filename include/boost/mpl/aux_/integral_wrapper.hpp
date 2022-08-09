@@ -68,9 +68,17 @@ struct AUX_WRAPPER_NAME
     || (BOOST_WORKAROUND(__HP_aCC, <= 53800) && (BOOST_WORKAROUND(__hpxstd98, != 1)))
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (N + 1)) ) next;
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (N - 1)) ) prior;
-#else
+#elif __cplusplus < 199711L
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value + 1)) ) next;
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value - 1)) ) prior;
+#else
+    template<decltype(n-1) n_minus_1 = n-1>
+    struct prior_impl : integral_wrapper<T, static_cast<T>(n_minus_1)> {};
+    typedef prior_impl<> prior;
+
+    template<decltype(n+1) n_plus_1 = n+1>
+    struct next_impl : integral_wrapper<T, static_cast<T>(n_plus_1)> {};
+    typedef next_impl<> next;
 #endif
 
     // enables uniform function call syntax for families of overloaded 
