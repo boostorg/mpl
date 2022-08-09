@@ -39,6 +39,8 @@
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 
+template< AUX_WRAPPER_PARAMS(N) > struct AUX_WRAPPER_NAME;
+
 template< AUX_WRAPPER_PARAMS(N) >
 struct AUX_WRAPPER_NAME
 {
@@ -73,11 +75,11 @@ struct AUX_WRAPPER_NAME
     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value - 1)) ) prior;
 #else
     template<decltype(N-1) n_minus_1 = N-1>
-    struct prior_impl : integral_wrapper<T, static_cast<T>(n_minus_1)> {};
+    struct prior_impl : integral_wrapper<AUX_WRAPPER_VALUE_TYPE, static_cast<AUX_WRAPPER_VALUE_TYPE>(n_minus_1)> {};
     typedef prior_impl<> prior;
 
     template<decltype(N+1) n_plus_1 = N+1>
-    struct next_impl : integral_wrapper<T, static_cast<T>(n_plus_1)> {};
+    struct next_impl : integral_wrapper<AUX_WRAPPER_VALUE_TYPE, static_cast<AUX_WRAPPER_VALUE_TYPE>(n_plus_1)> {};
     typedef next_impl<> next;
 #endif
 
