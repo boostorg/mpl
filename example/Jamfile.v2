@@ -10,6 +10,6 @@ import testing ;
 test-suite "mpl-examples"
    :    [ run     inherit_linearly.cpp ]
         [ compile integer.cpp ]
-        [ run     tuple_from_list.cpp ]
+        [ run     tuple_from_list.cpp : : : <source>/boost/tuple//boost_tuple ]
    ;
 

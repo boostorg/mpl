@@ -53,7 +53,7 @@ test-suite mpl :
     [ compile find.cpp ]
     [ compile find_if.cpp ]
     [ compile fold.cpp ]
-    [ run for_each.cpp ]
+    [ run for_each.cpp : : : <source>/boost/bind//boost_bind ]
     [ compile front.cpp ]
     [ compile get_tag_def.cpp ]
     [ compile has_xxx.cpp ]
