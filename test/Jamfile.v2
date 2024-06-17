@@ -110,3 +110,5 @@ compile vector.cpp ;
 compile vector_c.cpp ;
 compile zip_view.cpp ;
 run string.cpp ;
+
+run issue_69.cpp ;
