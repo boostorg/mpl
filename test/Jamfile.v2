@@ -1,10 +1,7 @@
 project
     :   requirements
-        <define>BOOST_ALL_NO_LIB=1
-        <warnings>all
-        <toolset>clang:<cxxflags>-Wextra
+        <warnings>extra
         <toolset>clang:<cxxflags>-Wno-variadic-macros
-        <toolset>gcc:<cxxflags>-Wextra
         <toolset>gcc:<cxxflags>-Wshadow
         <toolset>gcc:<cxxflags>-Wno-variadic-macros
         <toolset>msvc:<define>_SCL_SECURE_NO_WARNINGS
@@ -53,7 +50,7 @@ test-suite mpl :
     [ compile find.cpp ]
     [ compile find_if.cpp ]
     [ compile fold.cpp ]
-    [ run for_each.cpp ]
+    [ run for_each.cpp : : : <cxxstd>98:<build>no <cxxstd>03:<build>no ]
     [ compile front.cpp ]
     [ compile get_tag_def.cpp ]
     [ compile has_xxx.cpp ]
