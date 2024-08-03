@@ -1,5 +1,6 @@
 project
     :   requirements
+        <library>/boost/mpl//boost_mpl
         <warnings>extra
         <toolset>clang:<cxxflags>-Wno-variadic-macros
         <toolset>gcc:<cxxflags>-Wshadow

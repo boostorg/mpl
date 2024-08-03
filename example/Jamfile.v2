@@ -7,6 +7,8 @@
 
 import testing ;
 
+project : requirements <library>/boost/mpl//boost_mpl ;
+
 test-suite "mpl-examples"
    :    [ run     inherit_linearly.cpp ]
         [ compile integer.cpp ]
