@@ -64,6 +64,11 @@ jobs:
             container: ubuntu:24.04
             os: ubuntu-latest
             install: g++-14
+          - toolset: gcc
+            cxxflags: -funsigned-char
+            cxxstd: "03,11,14,17,20,2b"
+            container: ubuntu:24.04
+            os: ubuntu-latest
           - toolset: clang
             compiler: clang++-3.9
             cxxstd: "03,11,14"
@@ -227,7 +232,7 @@ jobs:
       - name: Run tests
         run: |
           cd ../boost-root
-          ./b2 -j3 libs/$LIBRARY/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} variant=debug,release
+          ./b2 -j3 libs/$LIBRARY/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} cxxflags=${{matrix.cxxflags}} variant=debug,release
 
   windows:
     strategy:
