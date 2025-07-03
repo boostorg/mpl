@@ -21,7 +21,7 @@ def check_header_comment(filename):
     # Check input file.
     name = os.path.basename( filename )
     # Read content of input file.
-    sourcefile = open( filename, "rU" )
+    sourcefile = open( filename, "r" )
     content = sourcefile.read()
     sourcefile.close()
     # Search content for '$Id$'.
@@ -93,7 +93,7 @@ def fix_header_comment(filename, timestamp):
     """Fixes the header-comment of the given file."""
     # Fix input file.
     name = os.path.basename( filename )
-    for line in fileinput.input( filename, inplace=1, mode="rU" ):
+    for line in fileinput.input( filename, inplace=1, mode="r" ):
         # If header-comment already contains anything for '$Id$', remove it.
         line = re.sub(r'\$Id:[^$]+\$', r'$Id$', line.rstrip())
         # Replace '$Id$' by a string containing the file's name (and a timestamp)!

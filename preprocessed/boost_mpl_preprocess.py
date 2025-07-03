@@ -29,7 +29,7 @@ def create_more_container_files(sourceDir, suffix, maxElements, containers, cont
             newFile = os.path.join( sourceDir, container, container + str(i+10) + suffix )
             shutil.copyfile( os.path.join( sourceDir, container, container + "20" + suffix ), newFile ) 
             # Adjust copy of "template"-file accordingly.
-            for line in fileinput.input( newFile, inplace=1, mode="rU" ):
+            for line in fileinput.input( newFile, inplace=1, mode="r" ):
                 line = re.sub(r'20', '%TWENTY%', line.rstrip())
                 line = re.sub(r'11', '%ELEVEN%', line.rstrip())
                 line = re.sub(r'10(?![0-9])', '%TEN%', line.rstrip())
@@ -43,7 +43,7 @@ def create_more_container_files(sourceDir, suffix, maxElements, containers, cont
             newFile = os.path.join( sourceDir, container, container + str(i+10) + "_c" + suffix )
             shutil.copyfile( os.path.join( sourceDir, container, container + "20_c" + suffix ), newFile ) 
             # Adjust copy of "template"-file accordingly.
-            for line in fileinput.input( newFile, inplace=1, mode="rU" ):
+            for line in fileinput.input( newFile, inplace=1, mode="r" ):
                 line = re.sub(r'20', '%TWENTY%', line.rstrip())
                 line = re.sub(r'11', '%ELEVEN%', line.rstrip())
                 line = re.sub(r'10(?![0-9])', '%TEN%', line.rstrip())
@@ -73,7 +73,7 @@ def adjust_container_limits_for_variadic_sequences(headerDir, containers, maxEle
         headerFile = os.path.join( headerDir, "limits", container + ".hpp" )
         regexMatch   = r'(define\s+BOOST_MPL_LIMIT_' + container.upper() + r'_SIZE\s+)[0-9]+'
         regexReplace = r'\g<1>' + re.escape( str(maxElements) )
-        for line in fileinput.input( headerFile, inplace=1, mode="rU" ):
+        for line in fileinput.input( headerFile, inplace=1, mode="r" ):
             line = re.sub(regexMatch, regexReplace, line.rstrip())
             print(line)
 
