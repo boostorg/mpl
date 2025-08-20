@@ -18,9 +18,11 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/stringize.hpp>
 
+// clang-format off
 #   define AUX778076_HEADER \
     aux_/preprocessed/plain/BOOST_MPL_PREPROCESSED_HEADER \
 /**/
+// clang-format on
 
 #if BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(700))
 #   define AUX778076_INCLUDE_STRING BOOST_PP_STRINGIZE(boost/mpl/list/AUX778076_HEADER)

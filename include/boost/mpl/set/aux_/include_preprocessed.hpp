@@ -20,9 +20,11 @@
 #include <boost/preprocessor/stringize.hpp>
 
 #if !defined(BOOST_NEEDS_TOKEN_PASTING_OP_FOR_TOKENS_JUXTAPOSING)
+// clang-format off
 #   define AUX778076_HEADER \
     plain/BOOST_MPL_PREPROCESSED_HEADER \
 /**/
+// clang-format on
 #else
 #   define AUX778076_HEADER \
     BOOST_PP_CAT(plain,/)##BOOST_MPL_PREPROCESSED_HEADER \
