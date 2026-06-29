@@ -6,18 +6,7 @@ cmake_minimum_required(VERSION 3.5...3.31)
 
 project(cmake_install_test LANGUAGES CXX)
 
-if(BOOST_CI_INSTALLED_BY STREQUAL "B2")
-
-  find_package(Boost REQUIRED)
-
-  add_library(Boost::mpl INTERFACE IMPORTED)
-  set_property(TARGET Boost::mpl APPEND PROPERTY INTERFACE_LINK_LIBRARIES Boost::headers)
-
-else()
-
-  find_package(boost_mpl REQUIRED)
-
-endif()
+find_package(Boost REQUIRED COMPONENTS mpl)
 
 add_executable(main main.cpp)
 target_link_libraries(main Boost::mpl)
